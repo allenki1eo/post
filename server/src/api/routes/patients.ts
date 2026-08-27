@@ -91,7 +91,7 @@ patientsRouter.get('/:id', async (req, res) => {
     return;
   }
 
-  const [plans, doses, alerts, checkIns, adherence] = await Promise.all([
+  const [plans, doses, alerts, checkIns, inbound, adherence] = await Promise.all([
     query(
       `select cp.id, cp.status, cp.starts_on, cp.ends_on, cp.open_ended, cp.red_flag_symptoms,
               coalesce((select json_agg(json_build_object(
@@ -123,6 +123,14 @@ patientsRouter.get('/:id', async (req, res) => {
         order by sent_at desc limit 20`,
       [req.params.id],
     ),
+    // Everything the patient sent, in their own words. Free text (parsed_code
+    // null) is the part a doctor actually needs to read.
+    query(
+      `select id, body, received_at, parsed_code
+         from inbound_messages where patient_id = $1
+        order by received_at desc limit 10`,
+      [req.params.id],
+    ),
     adherenceSnapshot(undefined, req.params.id!),
   ]);
 
@@ -130,7 +138,7 @@ patientsRouter.get('/:id', async (req, res) => {
     req.doctorId, req.params.id, 'patient.read',
   ]);
 
-  res.json({ patient, plans, doses, alerts, check_ins: checkIns, adherence });
+  res.json({ patient, plans, doses, alerts, check_ins: checkIns, inbound, adherence });
 });
 
 const carePlanSchema = z.object({

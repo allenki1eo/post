@@ -1,159 +1,178 @@
 # POST Design System — Foundations
 
-Tokens are the contract. Components reference token names; nothing in a component references a raw hex, px, or ms. Built against `.claude/skills/ui-craft` and audited with `.claude/skills/design-system-checklist`.
+Tokens are the contract. Components reference token names; nothing in a component references a raw hex, px, or ms. Built against `.claude/skills/ui-craft`, audited with `.claude/skills/design-system-checklist`, and the status palette validated with the `dataviz` skill's checker.
 
-## The tension to resolve first
+**Light is the default.** Dark mode exists and is a deliberate re-pick of every token against a dark surface, not an inversion.
 
-Dark and gold reads as luxury. Medical triage needs urgency to read as urgency. These fight if gold is allowed to signal importance, because then every screen is warm and nothing stands out.
+## The two tensions to resolve first
 
-**Resolution: gold is brand and primary action only. It never signals state.** Urgency is carried by a separate red/orange semantic set, and — per the never-color-alone rule — always by three things at once:
+### 1. Calm versus urgent
 
-1. **Position** — urgent patients sort to the top of triage. Sorting does more work than color.
-2. **A left rail** on the card, 3px, in the urgency color.
-3. **A label and icon** — "Dawa haikunywewa" / "Missed meds" with its icon. A doctor scanning in sunlight on a cheap screen gets the meaning from the text, not the hue.
+A recovering patient opening this app is often anxious. A doctor scanning triage needs urgency to be unmissable. Solve both by giving them different channels:
 
-Glow, gradients, and pulsing are not urgency signals. They are noise that makes a clinical tool look like a crypto dashboard.
+- **Colour carries calm.** Soft surfaces, a healing teal, muted tints instead of saturated fills. Nothing on a routine screen shouts.
+- **Structure carries urgency.** Urgent patients sort to the top, get a 3px rail, a tinted card, an icon, and a written label. A doctor gets the meaning from position and text before hue.
 
-## Color
+Because urgency does not depend on saturation, the palette can stay quiet without costing safety. Red is *reserved*: a red element anywhere in POST means a patient needs attention. It appears nowhere decorative.
 
-Dark-first. Warm neutrals (hue 80) so gold sits naturally rather than looking pasted on.
+### 2. Anxiety versus honesty
 
-### Neutral scale
+Calm must not mean vague. A missed dose is shown plainly as missed — softened colour, unsoftened words. Patients are not reassured by an interface that hides bad news; they are reassured by one that is clear about what to do next. Every warning state carries its next action.
 
-| Token | Value | Use |
-| --- | --- | --- |
-| `--bg` | `oklch(0.16 0.006 80)` | Page background |
-| `--surface` | `oklch(0.20 0.006 80)` | Cards, list rows |
-| `--surface-raised` | `oklch(0.24 0.006 80)` | Sheets, dialogs, popovers |
-| `--surface-hover` | `oklch(0.26 0.006 80)` | Hover/pressed on a surface |
-| `--border` | `oklch(0.32 0.006 80)` | Structural borders, dividers |
-| `--border-strong` | `oklch(0.42 0.006 80)` | Input borders, selected state |
-| `--text` | `oklch(0.97 0.004 80)` | Primary text |
-| `--text-secondary` | `oklch(0.80 0.005 80)` | Supporting copy |
-| `--text-muted` | `oklch(0.68 0.005 80)` | Metadata, timestamps — the AA floor, do not go lower |
+## Colour
 
-Elevation in dark UI comes from surface lightness, not shadow. Each step up the surface scale is one step lighter; shadow is support only.
+Warm-free, low-chroma neutrals; a single calm primary; status colours reserved. Every pairing below is measured, not estimated — the light set passes AA for text and 3:1 for UI boundaries, and the four status hues clear the CVD separation check.
 
-### Brand
+### Light (default)
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--gold` | `oklch(0.80 0.12 88)` | Primary action fill, active nav, brand marks |
-| `--gold-hover` | `oklch(0.86 0.12 88)` | Hover on gold fill |
-| `--gold-dim` | `oklch(0.58 0.09 88)` | Gold borders and rules on dark |
-| `--on-gold` | `oklch(0.18 0.01 80)` | Text and icons on a gold fill |
+| `--bg` | `oklch(0.98 0.004 240)` | Page background — paper, not pure white |
+| `--surface` | `oklch(1 0 0)` | Cards, list rows, sheets |
+| `--surface-sunken` | `oklch(0.965 0.006 240)` | Wells, secondary panels, code |
+| `--border` | `oklch(0.91 0.008 240)` | Hairlines and dividers |
+| `--border-strong` | `oklch(0.78 0.012 240)` | Emphasis dividers |
+| `--border-control` | `oklch(0.62 0.014 240)` | Input and control borders (3:1) |
+| `--text` | `oklch(0.30 0.02 250)` | Primary text — 13:1 |
+| `--text-secondary` | `oklch(0.45 0.02 250)` | Supporting copy — 7.4:1 |
+| `--text-muted` | `oklch(0.52 0.018 250)` | Metadata — 5.5:1, the floor |
 
-`--on-gold` on `--gold` is a dark-on-light pairing and clears AA comfortably. Never place `--text` (near-white) on gold.
+### Dark (a re-pick, not a flip)
 
-### Semantic / urgency
+| Token | Value |
+| --- | --- |
+| `--bg` | `oklch(0.205 0.012 250)` |
+| `--surface` | `oklch(0.245 0.012 250)` |
+| `--surface-sunken` | `oklch(0.185 0.012 250)` |
+| `--border` | `oklch(0.32 0.014 250)` |
+| `--border-control` | `oklch(0.60 0.016 250)` |
+| `--text` | `oklch(0.95 0.006 250)` |
+| `--text-secondary` | `oklch(0.80 0.01 250)` |
+| `--text-muted` | `oklch(0.68 0.012 250)` |
 
-| Token | Value | Meaning | Icon | sw / en label |
+Elevation in dark comes from surface lightness; in light it comes from a soft shadow over a near-white ground. Neither uses a border to fake depth.
+
+### Primary — healing teal
+
+| Token | Light | Dark | Use |
+| --- | --- | --- | --- |
+| `--primary` | `oklch(0.50 0.075 190)` | `oklch(0.72 0.085 185)` | Primary action fill, active nav |
+| `--primary-hover` | `oklch(0.44 0.075 190)` | `oklch(0.78 0.085 185)` | Hover on a primary fill |
+| `--primary-text` | `oklch(0.45 0.08 190)` | `oklch(0.80 0.075 185)` | Links, quiet emphasis |
+| `--primary-soft` | `oklch(0.95 0.02 190)` | `oklch(0.30 0.035 190)` | Selected rows, soft badges |
+| `--on-primary` | `oklch(1 0 0)` | `oklch(0.18 0.02 250)` | Text on a primary fill |
+
+Teal, not blue: blue is the default of every enterprise dashboard, and a desaturated blue-green reads as clinical care without reading as software. Not green alone either — green is spoken for by "dose taken".
+
+`--brass` `oklch(0.62 0.07 75)` is the one carry-over from the previous dark-and-gold direction, and it appears in exactly one place: the wordmark. Brand continuity is worth a wordmark; it is not worth an anxious interface.
+
+### Status — reserved, never decorative
+
+| Token | Light | Meaning | Icon | sw / en |
 | --- | --- | --- | --- | --- |
-| `--critical` | `oklch(0.60 0.20 25)` | Red-flag symptom reported | alert-triangle | Dalili ya hatari / Red flag |
-| `--critical-text` | `oklch(0.76 0.15 25)` | Critical text on dark | | |
-| `--warning` | `oklch(0.72 0.16 45)` | Missed medication, missed visit | clock-alert | Dawa haikunywewa / Missed meds |
-| `--warning-text` | `oklch(0.82 0.12 45)` | Warning text on dark | | |
-| `--success` | `oklch(0.68 0.15 150)` | Dose taken, check-in answered | check | Imekamilika / Done |
-| `--info` | `oklch(0.70 0.12 240)` | Upcoming visit, scheduled | calendar | Ijayo / Upcoming |
+| `--critical` | `oklch(0.50 0.165 18)` | Red-flag symptom | alert-triangle | Dalili ya hatari / Red flag |
+| `--warning` | `oklch(0.65 0.145 72)` | Missed meds, missed visit | clock-alert | Dawa haikunywewa / Missed meds |
+| `--success` | `oklch(0.53 0.115 158)` | Dose taken, check-in answered | check | Imekamilika / Done |
+| `--info` | `oklch(0.52 0.115 250)` | Upcoming visit, scheduled | calendar | Ijayo / Upcoming |
 
-Warning sits at hue 45 and gold at hue 88 — far enough apart to read as different colors on a cheap panel. That separation is the reason gold cannot also mean "attention".
+Each has a `-text` step for type on a surface and a `-soft` step for tinted card backgrounds — the tint is what keeps an urgent card calm while still separating it from the rest of the list.
 
-Red on a dark surface is not enough on its own for red-green color blindness: critical is `--critical` **plus** the triangle icon **plus** top position in the list.
-
-### Rules
-
-- One accent per screen. If a screen has a gold primary button, nothing else on it is gold.
-- Headings are `--text`. Gold is for links and actions.
-- Never use `--critical` decoratively. A red element on a POST screen means a patient needs attention.
-- Light mode is out of scope for v1. When it arrives it is a token swap on `:root`, not a filter.
+Measured: worst adjacent pair under normal vision ΔE 22.9, worst under protanopia ΔE 11.1 — both clear of the floor. And still never colour alone: every status ships with an icon and a written label.
 
 ## Typography
 
-**Swahili-first.** Swahili strings run roughly 15–25% longer than their English equivalents ("Follow-up visit" → "Ziara ya ufuatiliaji"). Every container flexes; nothing is sized to fit the English string. Buttons wrap to two lines rather than truncate. Test every screen in Swahili before English.
+**Swahili-first.** Swahili strings run 15–25% longer than their English equivalents ("Follow-up visit" → "Ziara ya ufuatiliaji"). Every container flexes; nothing is sized to the English string; buttons wrap rather than truncate. Test in Swahili before English.
 
-- **Family** — Inter (or the system UI face on Android), full Latin coverage, legible at small sizes on low-density screens. One family; a mono face only for dose counts and IDs.
-- **Numerals** — `tabular-nums` everywhere a number changes in place: adherence percentages, dose counts, days-since-discharge, countdowns.
-- **Wrapping** — `text-wrap: balance` on headings, `text-pretty` on body.
+- **Family** — Inter, or the platform UI face. One family; a mono face only for dose counts, phone numbers, and SMS previews.
+- **Numerals** — `tabular-nums` for anything that updates in place and any column of numbers.
+- **Wrapping** — `text-wrap: balance` on headings, `pretty` on body.
 - **Measure** — 60–75 characters for treatment summaries and notes.
-- **Casing** — sentence case throughout, in both languages. No all-caps labels; Swahili all-caps is harder to scan.
+- **Casing** — sentence case in both languages.
 - **Rendering** — `-webkit-font-smoothing: antialiased` on the root.
 
 | Token | Size / line-height | Use |
 | --- | --- | --- |
-| `--text-display` | 28 / 1.1 | Screen title |
-| `--text-title` | 20 / 1.2 | Section header, patient name on detail |
-| `--text-body-lg` | 17 / 1.5 | Patient name in triage, primary reading |
+| `--text-display` | 30 / 1.15 | Screen title |
+| `--text-title` | 20 / 1.25 | Section header, patient name on detail |
+| `--text-body-lg` | 17 / 1.45 | Patient name in triage |
 | `--text-body` | 15 / 1.55 | Default |
-| `--text-caption` | 13 / 1.4 | Metadata, timestamps |
-| `--text-label` | 12 / 1.3 | Pills and badges — the floor, nothing smaller ships |
-
-Hierarchy comes from weight, color, and spacing before another size step.
+| `--text-caption` | 13 / 1.45 | Metadata |
+| `--text-label` | 12 / 1.35 | Pills and badges — the floor |
 
 ## Layout
 
-- **Base unit 4.** Every spacing value is a multiple: 4, 8, 12, 16, 24, 32, 48.
-- **Breakpoints** — `sm` 360 (the floor: a cheap Android in portrait), `md` 600 (large phone / small tablet), `lg` 905 (tablet, doctor rounds).
-- **Touch targets** — 44×44 minimum, extended with a pseudo-element or padding rather than an inflated visual box. Doctors tap these one-handed while holding a chart.
-- **Concentric radii** — `outer = inner + padding`. `--radius-sm` 8, `--radius-md` 12, `--radius-lg` 16, `--radius-full` for pills.
-- `h-dvh`, safe-area insets on anything fixed.
-- Full-width buttons stop at the page margin.
+- **Base unit 4.** Spacing values are multiples: 4, 8, 12, 16, 24, 32, 48.
+- **Breakpoints** — `sm` 360 (a cheap Android in portrait), `md` 600, `lg` 905.
+- **Touch targets** — 44×44 minimum; 40×40 floor only in dense desktop UI, extended with padding or a pseudo-element rather than an inflated box.
+- **Concentric radii** — `outer = inner + padding`. `--radius-sm` 10, `--radius-md` 14, `--radius-lg` 18, `--radius-full` for pills. Rounder than a typical dashboard: soft geometry is part of the calm.
+- `h-dvh`, safe-area insets on anything fixed, full-width buttons inside the page margin.
 
 ## Elevation
 
-| Token | Use |
-| --- | --- |
-| `--elev-0` | Page background |
-| `--elev-1` | Card on page — `--surface`, no shadow, 1px `--border` |
-| `--elev-2` | Sheet, dialog — `--surface-raised` + soft shadow |
-| `--elev-3` | Toast, snackbar |
+| Token | Light | Use |
+| --- | --- | --- |
+| `--elev-1` | `0 1px 2px rgb(16 24 40 / 0.04)` + 1px border | Cards |
+| `--elev-2` | `0 4px 16px rgb(16 24 40 / 0.08)` | Sheets, dialogs, popovers |
+| `--elev-3` | `0 12px 32px rgb(16 24 40 / 0.12)` | Toasts |
 
-Z-index scale, fixed, no arbitrary values: `--z-base` 0, `--z-sticky` 10, `--z-overlay` 100, `--z-modal` 200, `--z-toast` 300.
+Shadows are cool-tinted and shallow. In dark mode each step is a lighter surface instead.
+
+Z-index scale, fixed: `--z-sticky` 10, `--z-overlay` 100, `--z-modal` 200, `--z-toast` 300.
 
 ## Motion
 
-Doctors open the triage dashboard dozens of times a day. Frequency decides motion, and most POST interactions are high frequency.
+Doctors open triage dozens of times a day; patients open the app while unwell. Both want an interface that is simply *there*.
 
 | Token | Value | Use |
 | --- | --- | --- |
 | `--dur-fast` | 120ms | Press feedback, toggles |
 | `--dur-base` | 180ms | Sheets, dialogs, popovers |
-| `--dur-slow` | 240ms | Ceiling. Nothing in POST animates longer. |
-| `--ease-out` | `cubic-bezier(0.2, 0, 0, 1)` | Enter and exit, both |
+| `--dur-slow` | 240ms | Ceiling |
+| `--ease-out` | `cubic-bezier(0.2, 0, 0, 1)` | Enter and exit |
 
-- **No animation** on triage list rendering, filter switches, tab changes, or anything keyboard-driven. The dashboard appears; it does not arrive.
-- Alerts never animate in. A new critical alert changes position and color — motion would delay the read and, worse, would make urgency feel decorative.
-- Press feedback: `scale(0.96)`.
-- Compositor properties only (`transform`, `opacity`). Never `transition: all`.
-- Honour `prefers-reduced-motion` — drop the movement, keep the state change.
+- **No animation** on triage rendering, filter switches, tab changes, or anything keyboard-driven.
+- Alerts never animate in. Motion would delay the read and make urgency feel decorative.
+- Press feedback `scale(0.96)`; compositor properties only; never `transition: all`.
+- Honour `prefers-reduced-motion` — drop movement, keep the state change.
 
 ## Iconography
 
-- 24px grid, 20px in dense rows. One set throughout.
-- Stroke 1.5px beside regular text, 2px beside semibold.
-- Outline by default; filled marks the active state. One `currentColor` SVG per icon; states come from CSS.
+- 24px grid, 20px dense. One set. Stroke 1.5px beside regular text, 2px beside semibold.
+- Outline default, filled for active. One `currentColor` SVG per icon; states from CSS.
 - `aria-label` on every icon-only control, in the active language.
-- **Reserved icons** — never reassigned to another meaning: triangle = critical, clock-alert = missed, check = adherent, calendar = scheduled visit, pill = medication, message = check-in.
+- **Reserved icons**, never reassigned: triangle = critical, clock-alert = missed, check = adherent, calendar = visit, pill = medication, message = check-in.
+
+## Data display
+
+The only visualisation in v1 is the **dose strip**: the last 14 scheduled doses as a row of small marks, newest last.
+
+- Colour by status, plus a shape so the strip survives colour blindness and a photocopy: filled circle = taken, filled square = missed, hollow circle = waiting.
+- 2px gap between marks so adjacent states never blur into a bar.
+- Direct-labelled with a legend; the adherence percentage is stated as a number beside it, since the number is what gets said out loud in a consultation.
+- No axis, no gridlines, no tooltip on the doctor's list view — the strip is a glance, and the detail view carries the exact times.
+
+Adherence percentage is a **stat**, not a chart: one number, `tabular-nums`, with its window named ("siku 7 zilizopita" / "last 7 days"). A percentage with no window is a number nobody can act on.
 
 ## SMS as a design surface
 
-Most POST patients will never see the app. The SMS *is* the interface, and it has harder constraints than any screen.
+Most POST patients will never see a screen. The SMS *is* the interface, with harder constraints than any of them.
 
-- **160 characters** per GSM-7 segment. Swahili copy must fit one segment — a two-segment reminder costs double and can arrive out of order.
-- **GSM-7 only.** No emoji, no curly quotes, no accented characters outside the GSM alphabet — any one of them flips the message to UCS-2 and drops the limit to 70 characters.
-- **Every reminder restates its reply grammar.** The patient does not have scrollback and does not remember what "2" meant.
-- **Identify the sender in every message.** "POST — Dkt. Mwangi" so an unexpected SMS is not read as a scam.
-- **No medical detail beyond what the patient already knows.** SMS is unencrypted and phones are shared; a diagnosis does not go over SMS.
-- Copy in Swahili first, English as the toggle — including the reply keywords.
+- **160 characters** per GSM-7 segment. Swahili copy must fit one; two segments cost double and can arrive out of order.
+- **GSM-7 only.** One emoji or curly quote flips the message to UCS-2 and drops the limit to 70.
+- **Every reminder restates its reply grammar.** There is no scrollback.
+- **Identify the sender in every message** so an unexpected SMS is not read as a scam.
+- **No diagnosis, ever.** SMS is unencrypted and phones are shared.
+- Swahili first, English as the toggle — including the reply keywords.
 
 ## Component definition of done
 
-Applies to every POST component: TriageCard, PatientRow, CarePlanBuilder, MedicationScheduleRow, CheckInResponse, AlertBanner, AdherenceHistory, SMS template.
+Applies to every POST component: TriageCard, PatientRow, CarePlanBuilder, MedicationScheduleRow, DoseStrip, CheckInResponse, AlertBanner, SMS template.
 
 - **States** — default, hover, focus-visible, active, disabled, loading, error, empty, selected.
 - **Structure** — documented anatomy, a variant API in the design vocabulary, composition examples.
 - **Accessibility** — native element or correct role, keyboard support, focus management, wired labels, announced state changes.
 - **Responsiveness** — 360 to 905, ≥44px targets, no horizontal scroll.
-- **Content** — long Swahili string, missing value, empty list, error text, a name that overflows.
+- **Content** — long Swahili string, missing value, empty list, error text, an overflowing name.
 - **Docs** — when to use, when not to, nearest alternative.
 
-An empty triage dashboard is a **good** outcome, not an error state: "Hakuna anayehitaji msaada sasa" / "No one needs attention right now" — with one clear action, *add a patient*.
+An empty triage dashboard is a **good** outcome, not an error: "Hakuna anayehitaji msaada sasa" / "No one needs attention right now" — with one clear action, *add a patient*.

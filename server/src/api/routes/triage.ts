@@ -75,6 +75,31 @@ triageRouter.get('/', async (req, res) => {
     return new Date(a.waiting_since).getTime() - new Date(b.waiting_since).getTime();
   });
 
+  // Adherence at a glance: the last 14 scheduled doses per flagged patient,
+  // oldest first, rendered as the dose strip (DESIGN-SYSTEM.md, "Data display").
+  const patientIds = [...byPatient.keys()];
+  if (patientIds.length > 0) {
+    const strips = await query<{ patient_id: string; marks: string[] }>(
+      `select p.id as patient_id,
+              array(
+                select case when l.taken then 'taken'
+                            when l.taken = false then 'missed'
+                            else 'waiting' end
+                  from medication_logs l
+                 where l.patient_id = p.id
+                   and l.scheduled_for <= now() + interval '12 hours'
+                 order by l.scheduled_for desc
+                 limit 14
+              ) as marks
+         from patients p where p.id = any($1::uuid[])`,
+      [patientIds],
+    );
+    for (const strip of strips) {
+      const entry = byPatient.get(strip.patient_id);
+      if (entry) entry.dose_strip = [...strip.marks].reverse();
+    }
+  }
+
   const [upcomingVisits, stable] = await Promise.all([
     query(
       `select v.id, v.visit_date, v.location, p.id as patient_id, p.name

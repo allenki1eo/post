@@ -4,71 +4,162 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>POST — Dashibodi ya daktari</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241f18'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='700' fill='%23e8c065' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f6f9fb">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2321716d'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='16' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
 <style>
-/* Tokens — docs/DESIGN-SYSTEM.md. Nothing below references a raw colour. */
+/* ===========================================================================
+   Tokens — docs/DESIGN-SYSTEM.md. Light is the default; dark is a re-pick of
+   every value against a dark surface, not an inversion. Nothing below this
+   block references a raw colour.
+   ======================================================================== */
 :root {
-  --bg: oklch(0.16 0.006 80);
-  --surface: oklch(0.20 0.006 80);
-  --surface-raised: oklch(0.24 0.006 80);
-  --surface-hover: oklch(0.26 0.006 80);
-  --border: oklch(0.32 0.006 80);
-  --border-strong: oklch(0.42 0.006 80);
-  --text: oklch(0.97 0.004 80);
-  --text-secondary: oklch(0.80 0.005 80);
-  --text-muted: oklch(0.68 0.005 80);
+  --bg: oklch(0.98 0.004 240);
+  --surface: oklch(1 0 0);
+  --surface-sunken: oklch(0.965 0.006 240);
+  --surface-hover: oklch(0.975 0.005 240);
+  --border: oklch(0.91 0.008 240);
+  --border-strong: oklch(0.78 0.012 240);
+  --border-control: oklch(0.62 0.014 240);
 
-  --gold: oklch(0.80 0.12 88);
-  --gold-hover: oklch(0.86 0.12 88);
-  --gold-dim: oklch(0.58 0.09 88);
-  --on-gold: oklch(0.18 0.01 80);
+  --text: oklch(0.30 0.02 250);
+  --text-secondary: oklch(0.45 0.02 250);
+  --text-muted: oklch(0.52 0.018 250);
 
-  --critical: oklch(0.60 0.20 25);
-  --critical-text: oklch(0.76 0.15 25);
-  --warning: oklch(0.72 0.16 45);
-  --warning-text: oklch(0.82 0.12 45);
-  --success: oklch(0.68 0.15 150);
-  --info: oklch(0.70 0.12 240);
+  --primary: oklch(0.50 0.075 190);
+  --primary-hover: oklch(0.44 0.075 190);
+  --primary-text: oklch(0.45 0.08 190);
+  --primary-soft: oklch(0.95 0.02 190);
+  --on-primary: oklch(1 0 0);
+  --brass: oklch(0.62 0.07 75);
 
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  --critical: oklch(0.50 0.165 18);
+  --critical-text: oklch(0.46 0.15 22);
+  --critical-soft: oklch(0.975 0.014 22);
+  --warning: oklch(0.65 0.145 72);
+  --warning-text: oklch(0.48 0.09 65);
+  --warning-soft: oklch(0.98 0.022 75);
+  --success: oklch(0.53 0.115 158);
+  --success-text: oklch(0.47 0.09 160);
+  --success-soft: oklch(0.965 0.02 160);
+  --info: oklch(0.52 0.115 250);
+  --info-text: oklch(0.47 0.09 245);
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  --elev-1: 0 1px 2px rgb(16 24 40 / 0.04);
+  --elev-2: 0 4px 16px rgb(16 24 40 / 0.08);
 
   --dur-fast: 120ms;
+  --dur-base: 180ms;
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
-
   --z-sticky: 10;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(0.205 0.012 250);
+    --surface: oklch(0.245 0.012 250);
+    --surface-sunken: oklch(0.185 0.012 250);
+    --surface-hover: oklch(0.275 0.012 250);
+    --border: oklch(0.32 0.014 250);
+    --border-strong: oklch(0.42 0.016 250);
+    --border-control: oklch(0.60 0.016 250);
+
+    --text: oklch(0.95 0.006 250);
+    --text-secondary: oklch(0.80 0.01 250);
+    --text-muted: oklch(0.68 0.012 250);
+
+    --primary: oklch(0.72 0.085 185);
+    --primary-hover: oklch(0.78 0.085 185);
+    --primary-text: oklch(0.80 0.075 185);
+    --primary-soft: oklch(0.30 0.035 190);
+    --on-primary: oklch(0.18 0.02 250);
+    --brass: oklch(0.76 0.075 80);
+
+    --critical: oklch(0.62 0.16 22);
+    --critical-text: oklch(0.76 0.13 22);
+    --critical-soft: oklch(0.255 0.030 22);
+    --warning: oklch(0.75 0.13 62);
+    --warning-text: oklch(0.84 0.10 65);
+    --warning-soft: oklch(0.255 0.026 65);
+    --success: oklch(0.72 0.11 160);
+    --success-text: oklch(0.80 0.095 160);
+    --success-soft: oklch(0.255 0.026 160);
+    --info: oklch(0.70 0.09 245);
+    --info-text: oklch(0.80 0.08 245);
+
+    --elev-1: none;
+    --elev-2: 0 8px 24px rgb(0 0 0 / 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: oklch(0.205 0.012 250);
+  --surface: oklch(0.245 0.012 250);
+  --surface-sunken: oklch(0.185 0.012 250);
+  --surface-hover: oklch(0.275 0.012 250);
+  --border: oklch(0.32 0.014 250);
+  --border-strong: oklch(0.42 0.016 250);
+  --border-control: oklch(0.60 0.016 250);
+
+  --text: oklch(0.95 0.006 250);
+  --text-secondary: oklch(0.80 0.01 250);
+  --text-muted: oklch(0.68 0.012 250);
+
+  --primary: oklch(0.72 0.085 185);
+  --primary-hover: oklch(0.78 0.085 185);
+  --primary-text: oklch(0.80 0.075 185);
+  --primary-soft: oklch(0.30 0.035 190);
+  --on-primary: oklch(0.18 0.02 250);
+  --brass: oklch(0.76 0.075 80);
+
+  --critical: oklch(0.62 0.16 22);
+  --critical-text: oklch(0.76 0.13 22);
+  --critical-soft: oklch(0.255 0.030 22);
+  --warning: oklch(0.75 0.13 62);
+  --warning-text: oklch(0.84 0.10 65);
+  --warning-soft: oklch(0.255 0.026 65);
+  --success: oklch(0.72 0.11 160);
+  --success-text: oklch(0.80 0.095 160);
+  --success-soft: oklch(0.255 0.026 160);
+  --info: oklch(0.70 0.09 245);
+  --info-text: oklch(0.80 0.08 245);
+
+  --elev-1: none;
+  --elev-2: 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+/* ============================================================ base */
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 15px/1.55 ui-sans-serif, "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 15px/1.55 "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
 }
-h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1, h2, h3 { text-wrap: balance; margin: 0; font-weight: 600; letter-spacing: -0.011em; }
 p { text-wrap: pretty; margin: 0; }
-:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-  border-radius: var(--radius-sm);
-}
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: var(--radius-sm); }
 .num { font-variant-numeric: tabular-nums; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
-/* ------------------------------------------------------------------ chrome */
+/* ========================================================== chrome */
 header {
   position: sticky; top: 0; z-index: var(--z-sticky);
-  display: flex; align-items: center; gap: 16px;
-  padding: 12px 20px; padding-top: max(12px, env(safe-area-inset-top));
-  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 20px; padding-top: max(10px, env(safe-area-inset-top));
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
-.wordmark { font-weight: 600; letter-spacing: -0.01em; color: var(--gold); font-size: 17px; }
+.wordmark {
+  font-weight: 700; font-size: 16px; letter-spacing: 0.02em;
+  color: var(--brass);
+}
 .who {
   color: var(--text-muted); font-size: 13px;
   min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -77,115 +168,166 @@ header {
 @media (min-width: 600px) { .who .facility { display: inline; } }
 header .spacer { margin-left: auto; }
 
-main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+main { max-width: 1120px; margin: 0 auto; padding: 24px 20px; }
 @media (min-width: 905px) {
-  main { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; align-items: start; }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 392px; gap: 28px; align-items: start; }
   main > .full { grid-column: 1 / -1; }
 }
 
-/* ------------------------------------------------------------------ pieces */
+/* ========================================================== controls */
 button {
   font: inherit; color: inherit; cursor: pointer;
   min-height: 44px; padding: 0 16px;
-  border-radius: var(--radius-sm); border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm); border: 1px solid var(--border-control);
   background: var(--surface);
-  transition-property: background-color, scale;
+  transition-property: background-color, border-color, scale;
   transition-duration: var(--dur-fast);
   transition-timing-function: var(--ease-out);
 }
 button:hover { background: var(--surface-hover); }
 button:active { scale: 0.96; }
 button.primary {
-  background: var(--gold); color: var(--on-gold); border-color: var(--gold); font-weight: 560;
+  background: var(--primary); color: var(--on-primary);
+  border-color: transparent; font-weight: 560;
+  box-shadow: var(--elev-1);
 }
-button.primary:hover { background: var(--gold-hover); }
-button.quiet { border-color: transparent; background: transparent; color: var(--text-secondary); }
+button.primary:hover { background: var(--primary-hover); }
+button.quiet {
+  border-color: transparent; background: transparent; color: var(--text-secondary);
+}
 button.quiet:hover { background: var(--surface-hover); color: var(--text); }
 button.sm { min-height: 36px; padding: 0 12px; font-size: 13px; }
 /* 36px is fine under a mouse in dense UI; a finger needs 44. */
-@media (pointer: coarse) {
-  button.sm { min-height: 44px; min-width: 44px; }
-}
+@media (pointer: coarse) { button.sm { min-height: 44px; min-width: 44px; } }
 header button { min-width: 44px; }
 
-input, select {
+input {
   font: inherit; color: var(--text); background: var(--surface);
-  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  border: 1px solid var(--border-control); border-radius: var(--radius-sm);
   min-height: 44px; padding: 0 12px; width: 100%;
 }
+input::placeholder { color: var(--text-muted); }
 label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
 
+/* ============================================================ pieces */
+.page-title { font-size: 30px; line-height: 1.15; margin-bottom: 4px; }
+.page-sub { color: var(--text-muted); font-size: 13px; margin-bottom: 24px; }
+
 .section-title {
-  font-size: 13px; color: var(--text-muted); font-weight: 500;
+  font-size: 13px; font-weight: 560; color: var(--text-secondary);
   margin: 0 0 12px; display: flex; align-items: baseline; gap: 8px;
 }
+.section-title .count { color: var(--text-muted); font-weight: 400; }
 
-.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+@media (max-width: 420px) { .tiles { grid-template-columns: 1fr 1fr; } }
 .tile {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 14px 16px;
+  border-radius: var(--radius-md); padding: 14px 16px; box-shadow: var(--elev-1);
 }
-.tile .value { font-size: 28px; line-height: 1.1; font-variant-numeric: tabular-nums; }
-.tile .label { font-size: 13px; color: var(--text-muted); }
+.tile .value { font-size: 30px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.tile .label { font-size: 13px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
 .tile.is-critical .value { color: var(--critical-text); }
 .tile.is-warning .value { color: var(--warning-text); }
+.tile.is-stable .value { color: var(--success-text); }
 
-/* Triage card: urgency reads from position first, then the rail, then the
-   label. Colour is never the only signal. */
+/* Triage card. Urgency reads from sort position first, then the rail and the
+   tint, then the written label. Colour is never the only signal. */
 .card {
   position: relative; display: block; width: 100%; text-align: left;
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-md); padding: 14px 16px 14px 19px;
-  margin-bottom: 12px; min-height: 44px;
+  border-radius: var(--radius-md); box-shadow: var(--elev-1);
+  padding: 16px 16px 16px 19px; margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease-out);
 }
 .card::before {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-  border-radius: var(--radius-md) 0 0 var(--radius-md); background: var(--border-strong);
+  background: var(--border-strong);
 }
+.card.is-critical { background: var(--critical-soft); }
 .card.is-critical::before { background: var(--critical); }
+.card.is-warning { background: var(--warning-soft); }
 .card.is-warning::before { background: var(--warning); }
-.card[aria-current="true"] { border-color: var(--border-strong); background: var(--surface-raised); }
-.card .name { font-size: 17px; }
-.card .meta { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
-.card .reasons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.card:hover { border-color: var(--border-strong); }
+.card[aria-current="true"] { border-color: var(--primary); }
+.card-head { display: flex; align-items: flex-start; gap: 12px; }
+.card .name { font-size: 17px; font-weight: 560; line-height: 1.3; }
+.card .meta { color: var(--text-secondary); font-size: 13px; margin-top: 2px; }
+.card .reasons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.card .strip-wrap { margin-top: 12px; }
+
+.avatar {
+  flex: none; width: 40px; height: 40px; border-radius: 999px;
+  display: grid; place-items: center;
+  background: var(--primary-soft); color: var(--primary-text);
+  font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+}
 
 .pill {
   display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; line-height: 1.3; padding: 4px 9px;
-  border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-secondary);
+  font-size: 12px; line-height: 1.35; padding: 5px 10px;
+  border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text-secondary);
 }
-.pill.is-critical { color: var(--critical-text); border-color: color-mix(in oklab, var(--critical) 55%, transparent); }
-.pill.is-warning { color: var(--warning-text); border-color: color-mix(in oklab, var(--warning) 55%, transparent); }
-.pill svg { width: 14px; height: 14px; stroke-width: 2; }
+.pill.is-critical { color: var(--critical-text); border-color: color-mix(in oklab, var(--critical) 40%, transparent); }
+.pill.is-warning { color: var(--warning-text); border-color: color-mix(in oklab, var(--warning) 45%, transparent); }
+.pill svg { width: 14px; height: 14px; stroke-width: 2; flex: none; }
+.section-title svg { width: 15px; height: 15px; stroke-width: 2; flex: none; }
+
+/* Dose strip: status by colour AND shape, so it survives colour blindness
+   and a photocopy. 2px gaps keep adjacent marks from reading as one bar. */
+.strip { display: flex; gap: 2px; align-items: center; }
+.mark { width: 10px; height: 10px; flex: none; }
+.mark.taken { background: var(--success); border-radius: 999px; }
+.mark.missed { background: var(--warning); border-radius: 3px; }
+.mark.waiting { border: 1.5px solid var(--border-strong); border-radius: 999px; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 12px; color: var(--text-muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
 
 .panel {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 16px;
+  border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--elev-1);
 }
 .panel + .panel { margin-top: 16px; }
-.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; }
 .row + .row { border-top: 1px solid var(--border); }
+.row .lead { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.row .lead .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .muted { color: var(--text-muted); font-size: 13px; }
-.dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
-.dot.taken { background: var(--success); }
-.dot.missed { background: var(--warning); }
-.dot.open { background: var(--border-strong); }
 
-.empty { text-align: center; padding: 40px 20px; }
-.empty p { color: var(--text-muted); margin-bottom: 16px; }
+.stat { display: flex; align-items: baseline; gap: 10px; margin: 4px 0 2px; }
+.stat .value { font-size: 30px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat .window { color: var(--text-muted); font-size: 13px; }
+
+.detail-head { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+.detail-head .avatar { width: 48px; height: 48px; font-size: 16px; }
+.detail-head h2 { font-size: 20px; line-height: 1.25; }
+
+.empty { text-align: center; padding: 44px 20px; }
+.empty .mark-ok {
+  width: 44px; height: 44px; border-radius: 999px; margin: 0 auto 14px;
+  background: var(--success-soft); color: var(--success-text);
+  display: grid; place-items: center;
+}
+.empty .mark-ok svg { width: 22px; height: 22px; stroke-width: 2; }
+.empty p { color: var(--text-secondary); margin-bottom: 18px; }
 
 .sms {
   font-family: ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace;
-  font-size: 12px; line-height: 1.5; color: var(--text-secondary);
-  background: var(--surface-raised); border: 1px solid var(--border);
+  font-size: 12px; line-height: 1.6; color: var(--text-secondary);
+  background: var(--surface-sunken); border: 1px solid var(--border);
   border-radius: var(--radius-sm); padding: 10px 12px; overflow-x: auto;
 }
-.demo-note {
-  font-size: 12px; color: var(--text-muted);
-  border-top: 1px dashed var(--border-strong); padding-top: 12px; margin-top: 16px;
+.quote {
+  border-left: 2px solid var(--border-strong); padding: 2px 0 2px 12px;
+  color: var(--text-secondary); font-size: 14px; margin-top: 10px;
 }
+.demo-note { font-size: 12px; color: var(--text-muted); border-top: 1px dashed var(--border-strong); padding-top: 16px; margin-top: 18px; }
 .stack { display: grid; gap: 12px; }
-.login { max-width: 360px; margin: 12vh auto; }
+.login { max-width: 380px; margin: 10vh auto; }
+.login h1 { font-size: 24px; }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -194,8 +336,9 @@ label { display: block; font-size: 13px; color: var(--text-secondary); margin-bo
   <span class="wordmark">POST</span>
   <span class="who" id="who"></span>
   <span class="spacer"></span>
+  <button class="quiet sm" id="theme" aria-label="Badili mwanga">◐</button>
   <button class="quiet sm" id="lang" aria-label="Badili lugha">EN</button>
-  <button class="quiet sm" id="refresh" hidden>↻</button>
+  <button class="quiet sm" id="refresh" hidden aria-label="Onyesha upya">↻</button>
 </header>
 
 <main id="app"></main>
@@ -204,37 +347,34 @@ label { display: block; font-size: 13px; color: var(--text-secondary); margin-bo
 const T = {
   sw: {
     signIn: 'Ingia', phone: 'Namba ya simu', password: 'Nenosiri',
-    needsAttention: 'Wanaohitaji msaada', upcoming: 'Ziara zijazo',
+    title: 'Wagonjwa wako', needsAttention: 'Wanaohitaji msaada', upcoming: 'Ziara zijazo',
     critical: 'Hatari', warning: 'Angalia', stable: 'Wako sawa',
     empty: 'Hakuna anayehitaji msaada sasa.', addPatient: 'Ongeza mgonjwa',
-    adherence: 'Unywaji wa dawa', doses: 'Dozi za karibuni', messages: 'Ujumbe',
-    resolve: 'Imeshughulikiwa', waiting: 'tangu', selectPatient: 'Chagua mgonjwa kuona historia yake.',
+    adherence: 'Unywaji wa dawa', window: 'siku 7 zilizopita',
+    doses: 'Dozi za karibuni', messages: 'Ujumbe wake',
+    resolve: 'Imeshughulikiwa', waiting: 'tangu', alerts: 'Tahadhari',
+    selectPatient: 'Chagua mgonjwa kuona historia yake.',
     outbox: 'SMS zilizotumwa', simulate: 'Jibu kama mgonjwa', send: 'Tuma',
-    runTick: 'Endesha kikumbusho', taken: 'amekunywa', missed: 'hakunywa', open: 'inasubiri',
+    runTick: 'Endesha vikumbusho', taken: 'amekunywa', missed: 'hakunywa', open: 'inasubiri',
     noDoses: 'Hakuna dozi bado.', demo: 'Vidhibiti vya onyesho — havipo kwenye toleo halisi.',
-    signInFailed: 'Namba au nenosiri si sahihi.',
+    signInFailed: 'Namba au nenosiri si sahihi.', today: 'Leo',
   },
   en: {
     signIn: 'Sign in', phone: 'Phone number', password: 'Password',
-    needsAttention: 'Needs attention', upcoming: 'Upcoming visits',
+    title: 'Your patients', needsAttention: 'Needs attention', upcoming: 'Upcoming visits',
     critical: 'Critical', warning: 'Attention', stable: 'Stable',
     empty: 'No one needs attention right now.', addPatient: 'Add patient',
-    adherence: 'Adherence', doses: 'Recent doses', messages: 'Messages',
-    resolve: 'Handled', waiting: 'since', selectPatient: 'Select a patient to see their history.',
+    adherence: 'Adherence', window: 'last 7 days',
+    doses: 'Recent doses', messages: 'Their messages',
+    resolve: 'Handled', waiting: 'since', alerts: 'Alerts',
+    selectPatient: 'Select a patient to see their history.',
     outbox: 'Sent SMS', simulate: 'Reply as patient', send: 'Send',
-    runTick: 'Run reminder tick', taken: 'taken', missed: 'missed', open: 'waiting',
+    runTick: 'Run reminders', taken: 'taken', missed: 'missed', open: 'waiting',
     noDoses: 'No doses yet.', demo: 'Demo controls — not part of the real product.',
-    signInFailed: 'Wrong number or password.',
+    signInFailed: 'Wrong number or password.', today: 'Today',
   },
 };
 
-const ICONS = {
-  'alert-triangle': '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17.5v.5"/>',
-  'clock-alert': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
-  'signal-off': '<path d="M3 20h18"/><path d="M6 20v-4"/><path d="M12 20V9"/><path d="m3 3 18 18"/>',
-  'message': '<path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2Z"/>',
-  'calendar': '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/>',
-};
 const ALERT_LABELS = {
   red_flag_symptom: { sw: 'Dalili ya hatari', en: 'Red flag symptom', icon: 'alert-triangle' },
   missed_meds:      { sw: 'Dawa haikunywewa', en: 'Missed meds',      icon: 'clock-alert' },
@@ -243,12 +383,20 @@ const ALERT_LABELS = {
   unparsed_reply:   { sw: 'Ujumbe mpya',      en: 'New message',      icon: 'message' },
   opted_out:        { sw: 'Amejitoa',         en: 'Opted out',        icon: 'signal-off' },
 };
-const alertLabel = (type) => ALERT_LABELS[type] ? ALERT_LABELS[type][lang] : type;
+const ICONS = {
+  'alert-triangle': '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17.5v.5"/>',
+  'clock-alert': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  'signal-off': '<path d="M3 20h18"/><path d="M6 20v-4"/><path d="M12 20V9"/><path d="m3 3 18 18"/>',
+  'message': '<path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2Z"/>',
+  'calendar': '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/>',
+  'check': '<path d="m5 13 4 4L19 7"/>',
+};
 const icon = (name) =>
   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
         stroke-linejoin="round" aria-hidden="true">${ICONS[name] ?? ICONS['alert-triangle']}</svg>`;
 
 let lang = localStorage.getItem('post.lang') ?? 'sw';
+let theme = localStorage.getItem('post.theme') ?? '';
 let token = localStorage.getItem('post.token') ?? '';
 let selected = null;
 const app = document.getElementById('app');
@@ -268,11 +416,10 @@ const api = async (path, options = {}) => {
 };
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const initials = (name) => String(name).trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join('').toUpperCase();
 const since = (iso) => {
   const mins = Math.max(0, Math.round((Date.now() - new Date(iso)) / 60000));
-  const unit = lang === 'sw'
-    ? { m: 'dk', h: 'saa', d: 'siku' }
-    : { m: 'min', h: 'h', d: 'd' };
+  const unit = lang === 'sw' ? { m: 'dk', h: 'saa', d: 'siku' } : { m: 'min', h: 'h', d: 'd' };
   if (mins < 60) return `${mins} ${unit.m}`;
   if (mins < 1440) return `${Math.round(mins / 60)} ${unit.h}`;
   return `${Math.round(mins / 1440)} ${unit.d}`;
@@ -286,6 +433,22 @@ const day = (isoDate) => {
   const [y, m, d] = String(isoDate).split('-');
   return `${d}/${m}/${y.slice(2)}`;
 };
+const doseStrip = (marks, withLegend = false) => {
+  if (!marks || marks.length === 0) return '';
+  const label = `${t().doses}: ${marks.filter((m) => m === 'taken').length}/${marks.filter((m) => m !== 'waiting').length} ${t().taken}`;
+  return `
+    <div class="strip-wrap">
+      <div class="strip" role="img" aria-label="${esc(label)}">
+        ${marks.map((m) => `<span class="mark ${m}"></span>`).join('')}
+      </div>
+      ${withLegend ? `
+      <div class="legend">
+        <span><span class="mark taken"></span>${t().taken}</span>
+        <span><span class="mark missed"></span>${t().missed}</span>
+        <span><span class="mark waiting"></span>${t().open}</span>
+      </div>` : ''}
+    </div>`;
+};
 
 /* ------------------------------------------------------------------ login */
 function renderLogin() {
@@ -293,7 +456,7 @@ function renderLogin() {
   document.getElementById('refresh').hidden = true;
   app.innerHTML = `
     <form class="panel login stack" id="form">
-      <h1 style="font-size:20px">${t().signIn}</h1>
+      <h1>${t().signIn}</h1>
       <div>
         <label for="phone">${t().phone}</label>
         <input id="phone" name="phone" inputmode="tel" value="+255700000001" autocomplete="username">
@@ -327,46 +490,61 @@ async function renderDashboard() {
       (me.doctor.facility ? `<span class="facility"> · ${esc(me.doctor.facility)}</span>` : '')
     : '';
 
-  const counts = triage.counts;
-  const tiles = `
-    <div class="tiles">
-      <div class="tile is-critical"><div class="value num">${counts.critical}</div><div class="label">${t().critical}</div></div>
-      <div class="tile is-warning"><div class="value num">${counts.warning}</div><div class="label">${t().warning}</div></div>
-      <div class="tile"><div class="value num">${counts.stable}</div><div class="label">${t().stable}</div></div>
-    </div>`;
+  const c = triage.counts;
+  const dateLabel = new Date().toLocaleDateString(lang === 'sw' ? 'sw-TZ' : 'en-GB',
+    { weekday: 'long', day: 'numeric', month: 'long' });
 
   const list = triage.needs_attention.length === 0
     ? `<div class="panel empty">
+         <div class="mark-ok">${icon('check')}</div>
          <p>${t().empty}</p>
          <button class="primary">${t().addPatient}</button>
        </div>`
     : triage.needs_attention.map((entry) => `
       <button class="card is-${entry.severity}" data-patient="${entry.patient.id}"
               aria-current="${selected === entry.patient.id}">
-        <div class="name">${esc(entry.patient.name)}</div>
-        <div class="meta">${esc(entry.patient.diagnosis)} · ${t().waiting} ${since(entry.waiting_since)}</div>
+        <div class="card-head">
+          <span class="avatar" aria-hidden="true">${esc(initials(entry.patient.name))}</span>
+          <span style="min-width:0">
+            <span class="name">${esc(entry.patient.name)}</span>
+            <div class="meta">${esc(entry.patient.diagnosis)} · ${t().waiting} ${since(entry.waiting_since)}</div>
+          </span>
+        </div>
         <div class="reasons">
           ${entry.reasons.map((r) => `
             <span class="pill is-${r.severity}">${icon(r.icon)}${esc(lang === 'sw' ? r.label_sw : r.label_en)}</span>
           `).join('')}
         </div>
+        ${doseStrip(entry.dose_strip)}
       </button>`).join('');
 
   const visits = triage.upcoming_visits.length === 0 ? '' : `
-    <div class="panel">
-      <h2 class="section-title">${t().upcoming}</h2>
+    <div class="panel" style="margin-top:24px">
+      <h2 class="section-title">${icon('calendar')}&nbsp;${t().upcoming}</h2>
       ${triage.upcoming_visits.map((v) => `
         <div class="row">
-          <div><div>${esc(v.name)}</div><div class="muted">${esc(v.location)}</div></div>
+          <div class="lead">
+            <span class="avatar" style="width:32px;height:32px;font-size:12px" aria-hidden="true">${esc(initials(v.name))}</span>
+            <span style="min-width:0">
+              <div class="name">${esc(v.name)}</div>
+              <div class="muted">${esc(v.location)}</div>
+            </span>
+          </div>
           <div class="muted num">${day(v.visit_date)}</div>
         </div>`).join('')}
     </div>`;
 
   app.innerHTML = `
     <section>
-      ${tiles}
+      <h1 class="page-title">${t().title}</h1>
+      <p class="page-sub">${esc(dateLabel)}</p>
+      <div class="tiles">
+        <div class="tile is-critical"><div class="value num">${c.critical}</div><div class="label">${t().critical}</div></div>
+        <div class="tile is-warning"><div class="value num">${c.warning}</div><div class="label">${t().warning}</div></div>
+        <div class="tile is-stable"><div class="value num">${c.stable}</div><div class="label">${t().stable}</div></div>
+      </div>
       <h2 class="section-title">${t().needsAttention}
-        <span class="muted num">${triage.needs_attention.length}</span></h2>
+        <span class="count num">${triage.needs_attention.length}</span></h2>
       ${list}
       ${visits}
     </section>
@@ -387,38 +565,62 @@ async function selectPatient(id) {
   }
   const data = await api(`/patients/${id}`);
   const rate = data.adherence.adherenceRate;
-  const detail = document.getElementById('detail');
+  const marks = [...data.doses].reverse()
+    .map((d) => (d.taken === true ? 'taken' : d.taken === false ? 'missed' : 'waiting'))
+    .slice(-14);
 
-  detail.innerHTML = `
-    <h2 style="font-size:20px">${esc(data.patient.name)}</h2>
-    <p class="muted">${esc(data.patient.diagnosis)}</p>
-    <p class="muted num">${esc(data.patient.phone)}</p>
-
-    <div class="row" style="margin-top:12px">
-      <span class="muted">${t().adherence}</span>
-      <span class="num">${rate === null ? '—' : `${Math.round(rate * 100)}%`}</span>
+  document.getElementById('detail').innerHTML = `
+    <div class="detail-head">
+      <span class="avatar" aria-hidden="true">${esc(initials(data.patient.name))}</span>
+      <span style="min-width:0">
+        <h2>${esc(data.patient.name)}</h2>
+        <div class="muted">${esc(data.patient.diagnosis)}</div>
+        <div class="muted num">${esc(data.patient.phone)}</div>
+      </span>
     </div>
 
-    <h3 class="section-title" style="margin-top:20px">${t().doses}</h3>
-    ${data.doses.length === 0 ? `<p class="muted">${t().noDoses}</p>` : data.doses.slice(0, 8).map((d) => `
+    <h3 class="section-title">${t().adherence}</h3>
+    <div class="stat">
+      <span class="value">${rate === null ? '—' : `${Math.round(rate * 100)}%`}</span>
+      <span class="window">${t().window}</span>
+    </div>
+    ${doseStrip(marks, true)}
+
+    <h3 class="section-title" style="margin-top:24px">${t().doses}</h3>
+    ${data.doses.length === 0 ? `<p class="muted">${t().noDoses}</p>` : data.doses.slice(0, 6).map((d) => `
       <div class="row">
-        <span><span class="dot ${d.taken === true ? 'taken' : d.taken === false ? 'missed' : 'open'}"></span>
-          ${esc(d.medication)}</span>
+        <span class="lead">
+          <span class="mark ${d.taken === true ? 'taken' : d.taken === false ? 'missed' : 'waiting'}"></span>
+          <span>${esc(d.medication)}</span>
+        </span>
         <span class="muted num">${clock(d.scheduled_for, data.patient.timezone)} · ${
           d.taken === true ? t().taken : d.taken === false ? t().missed : t().open}</span>
       </div>`).join('')}
 
+    ${(() => {
+      const open = data.alerts.filter((a) => !a.resolved);
+      return open.length === 0 ? '' : `<h3 class="section-title" style="margin-top:24px">${t().alerts}</h3>`;
+    })()}
     ${data.alerts.filter((a) => !a.resolved).map((a) => `
       <div class="row">
-        <span class="pill is-${a.severity}">${icon(ALERT_LABELS[a.type]?.icon)}${esc(alertLabel(a.type))}</span>
+        <span class="pill is-${a.severity}">${icon(ALERT_LABELS[a.type]?.icon)}${
+          esc(ALERT_LABELS[a.type] ? ALERT_LABELS[a.type][lang] : a.type)}</span>
         <button class="sm" data-resolve="${a.id}">${t().resolve}</button>
       </div>`).join('')}
 
-    ${data.check_ins.filter((c) => c.response_raw).slice(0, 4).map((c) => `
-      <div class="sms" style="margin-top:8px">“${esc(c.response_raw)}” · ${clock(c.responded_at ?? c.sent_at, data.patient.timezone)}</div>
-    `).join('')}`;
+    ${(() => {
+      // Their own words, not their reply codes: a "1" is adherence data, a
+      // sentence is the patient telling their doctor something.
+      const said = (data.inbound ?? []).filter((m) => m.parsed_code === null);
+      if (said.length === 0) return '';
+      return `<h3 class="section-title" style="margin-top:24px">${t().messages}</h3>` +
+        said.slice(0, 3).map((m) => `
+          <div class="quote">${esc(m.body)}
+            <div class="muted num" style="margin-top:4px">${clock(m.received_at, data.patient.timezone)}</div>
+          </div>`).join('');
+    })()}`;
 
-  for (const button of detail.querySelectorAll('[data-resolve]')) {
+  for (const button of document.querySelectorAll('[data-resolve]')) {
     button.addEventListener('click', async () => {
       await api(`/triage/alerts/${button.dataset.resolve}/resolve`, { method: 'POST' });
       renderDashboard();
@@ -434,22 +636,23 @@ async function renderDemoControls() {
   if (!outbox) return;
 
   box.innerHTML = `
-    <div class="panel">
-      <h2 class="section-title">${t().outbox} <span class="muted">${esc(outbox.gateway)}</span></h2>
-      ${outbox.messages.slice(0, 6).map((m) => `
+    <div class="panel" style="margin-top:24px">
+      <h2 class="section-title">${t().outbox} <span class="count">${esc(outbox.gateway)}</span></h2>
+      ${outbox.messages.slice(0, 5).map((m) => `
         <div class="sms" style="margin-bottom:8px">
-          <div class="muted num">${esc(m.to_phone)} · ${esc(m.status)} · ${m.sent_at ? clock(m.sent_at, m.timezone) : clock(m.scheduled_for, m.timezone)}</div>
+          <div class="muted num">${esc(m.to_phone)} · ${esc(m.status)} · ${
+            m.sent_at ? clock(m.sent_at, m.timezone) : clock(m.scheduled_for, m.timezone)}</div>
           ${esc(m.body)}
         </div>`).join('')}
       <div class="demo-note">
-        <p style="margin-bottom:10px">${t().demo}</p>
+        <p style="margin-bottom:12px">${t().demo}</p>
         <div class="stack" style="grid-template-columns: 1fr 1fr auto; align-items:end">
           <div><label for="from">${t().simulate}</label>
             <input id="from" value="${esc(outbox.messages[0]?.to_phone ?? '')}"></div>
           <div><label for="text">SMS</label><input id="text" value="1"></div>
           <button class="sm" id="reply">${t().send}</button>
         </div>
-        <button class="sm" id="tick" style="margin-top:10px">${t().runTick}</button>
+        <button class="sm" id="tick" style="margin-top:12px">${t().runTick}</button>
       </div>
     </div>`;
 
@@ -467,6 +670,17 @@ async function renderDemoControls() {
   });
 }
 
+/* ------------------------------------------------------------- app chrome */
+function applyTheme() {
+  if (theme) document.documentElement.setAttribute('data-theme', theme);
+  else document.documentElement.removeAttribute('data-theme');
+  document.getElementById('theme').textContent = theme === 'dark' ? '☾' : theme === 'light' ? '☀' : '◐';
+}
+document.getElementById('theme').addEventListener('click', () => {
+  theme = theme === '' ? 'light' : theme === 'light' ? 'dark' : '';
+  theme ? localStorage.setItem('post.theme', theme) : localStorage.removeItem('post.theme');
+  applyTheme();
+});
 document.getElementById('lang').addEventListener('click', () => {
   lang = lang === 'sw' ? 'en' : 'sw';
   localStorage.setItem('post.lang', lang);
@@ -477,6 +691,7 @@ document.getElementById('lang').addEventListener('click', () => {
 document.getElementById('refresh').addEventListener('click', () => renderDashboard());
 document.getElementById('lang').textContent = lang === 'sw' ? 'EN' : 'SW';
 document.documentElement.lang = lang;
+applyTheme();
 
 token ? renderDashboard().catch(renderLogin) : renderLogin();
 </script>

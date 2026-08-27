@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { query } from '../src/db.js';
+import { pool, query } from '../src/db.js';
+import { expandPlanWindow } from '../src/domain/scheduling.js';
 import { tick } from '../src/worker.js';
 import { fakeSms } from './setup.js';
-import { addPatient, addStandardPlan, api, at, plusDays, registerDoctor } from './helpers.js';
+import { addPatient, addStandardPlan, api, at, plusDays, registerDoctor, today } from './helpers.js';
 
 const reply = (phone: string, text: string, id: string) =>
   api().post('/api/webhooks/sms/inbound').type('form')
@@ -42,6 +43,35 @@ describe('silence becomes an alert', () => {
       icon: 'clock-alert',
     });
     expect(entry.reasons[0].context).toMatchObject({ consecutive_misses: 2 });
+  });
+
+  it('returns a dose strip of what already happened, oldest first', async () => {
+    const doctor = await registerDoctor();
+    const patient = await addPatient(doctor);
+    const start = plusDays(today(), -2);
+    const plan = await addStandardPlan(doctor, patient.id, start);
+
+    // Creating a plan only schedules future doses — it never backfills. To have
+    // history to look at, expand from before the first dose, as the seeder does.
+    const client = await pool.connect();
+    try {
+      await expandPlanWindow(client, plan.care_plan_id, { now: at(start, '00:01') });
+    } finally {
+      client.release();
+    }
+
+    await tick(at(start, '08:01'));
+    await reply(patient.phone, '1', 'strip-taken');
+    await tick(at(start, '20:01'));
+    await tick(at(start, '23:50'));
+    await tick(at(plusDays(start, 1), '08:01'));
+    await tick(at(plusDays(start, 1), '11:30'));
+
+    const triage = await doctor.auth(api().get('/api/triage')).expect(200);
+    const strip = triage.body.needs_attention[0].dose_strip;
+    // Oldest first, so the strip reads left to right like a calendar. The tail
+    // is whatever is still waiting, which depends on the hour the test runs.
+    expect(strip.slice(0, 3)).toEqual(['taken', 'missed', 'missed']);
   });
 
   it('clears the alert once the patient answers again', async () => {

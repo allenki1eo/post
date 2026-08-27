@@ -95,7 +95,9 @@ See `docs/DECISIONS.md` for the recommendation on the open stack questions.
 
 ## 9. Design direction
 
-- Dark, premium aesthetic with gold accents, consistent with the existing product line — tempered for a medical context: high legibility, and a visual hierarchy where urgency reads as urgent rather than merely stylish.
+- Calm and light by default. A recovering patient opening this app is often anxious, and a doctor scanning triage needs urgency to be unmissable — so colour carries the calm (soft surfaces, a healing teal, muted tints) and structure carries the urgency (sort position, rail, icon, written label). Dark mode is a deliberate re-pick of every token, not an inversion.
+- Calm never means vague: a missed dose is shown plainly as missed, with softened colour and unsoftened words, and every warning state carries its next action.
+- Brand continuity with the existing dark-and-gold product line is kept to the wordmark. It is not worth an anxious interface.
 - Swahili-first UI with an English toggle.
 - The doctor dashboard prioritises scannability: triage at a glance, not a dense table.
 
