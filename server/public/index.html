@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>POST — Dashibodi ya daktari</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23241f18'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='700' fill='%23e8c065' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+<style>
+/* Tokens — docs/DESIGN-SYSTEM.md. Nothing below references a raw colour. */
+:root {
+  --bg: oklch(0.16 0.006 80);
+  --surface: oklch(0.20 0.006 80);
+  --surface-raised: oklch(0.24 0.006 80);
+  --surface-hover: oklch(0.26 0.006 80);
+  --border: oklch(0.32 0.006 80);
+  --border-strong: oklch(0.42 0.006 80);
+  --text: oklch(0.97 0.004 80);
+  --text-secondary: oklch(0.80 0.005 80);
+  --text-muted: oklch(0.68 0.005 80);
+
+  --gold: oklch(0.80 0.12 88);
+  --gold-hover: oklch(0.86 0.12 88);
+  --gold-dim: oklch(0.58 0.09 88);
+  --on-gold: oklch(0.18 0.01 80);
+
+  --critical: oklch(0.60 0.20 25);
+  --critical-text: oklch(0.76 0.15 25);
+  --warning: oklch(0.72 0.16 45);
+  --warning-text: oklch(0.82 0.12 45);
+  --success: oklch(0.68 0.15 150);
+  --info: oklch(0.70 0.12 240);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --dur-fast: 120ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+  --z-sticky: 10;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.55 ui-sans-serif, "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { text-wrap: pretty; margin: 0; }
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+.num { font-variant-numeric: tabular-nums; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+/* ------------------------------------------------------------------ chrome */
+header {
+  position: sticky; top: 0; z-index: var(--z-sticky);
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 20px; padding-top: max(12px, env(safe-area-inset-top));
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.wordmark { font-weight: 600; letter-spacing: -0.01em; color: var(--gold); font-size: 17px; }
+.who {
+  color: var(--text-muted); font-size: 13px;
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.who .facility { display: none; }
+@media (min-width: 600px) { .who .facility { display: inline; } }
+header .spacer { margin-left: auto; }
+
+main { max-width: 1100px; margin: 0 auto; padding: 20px; }
+@media (min-width: 905px) {
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 24px; align-items: start; }
+  main > .full { grid-column: 1 / -1; }
+}
+
+/* ------------------------------------------------------------------ pieces */
+button {
+  font: inherit; color: inherit; cursor: pointer;
+  min-height: 44px; padding: 0 16px;
+  border-radius: var(--radius-sm); border: 1px solid var(--border-strong);
+  background: var(--surface);
+  transition-property: background-color, scale;
+  transition-duration: var(--dur-fast);
+  transition-timing-function: var(--ease-out);
+}
+button:hover { background: var(--surface-hover); }
+button:active { scale: 0.96; }
+button.primary {
+  background: var(--gold); color: var(--on-gold); border-color: var(--gold); font-weight: 560;
+}
+button.primary:hover { background: var(--gold-hover); }
+button.quiet { border-color: transparent; background: transparent; color: var(--text-secondary); }
+button.quiet:hover { background: var(--surface-hover); color: var(--text); }
+button.sm { min-height: 36px; padding: 0 12px; font-size: 13px; }
+/* 36px is fine under a mouse in dense UI; a finger needs 44. */
+@media (pointer: coarse) {
+  button.sm { min-height: 44px; min-width: 44px; }
+}
+header button { min-width: 44px; }
+
+input, select {
+  font: inherit; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  min-height: 44px; padding: 0 12px; width: 100%;
+}
+label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+
+.section-title {
+  font-size: 13px; color: var(--text-muted); font-weight: 500;
+  margin: 0 0 12px; display: flex; align-items: baseline; gap: 8px;
+}
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.tile {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 14px 16px;
+}
+.tile .value { font-size: 28px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.tile .label { font-size: 13px; color: var(--text-muted); }
+.tile.is-critical .value { color: var(--critical-text); }
+.tile.is-warning .value { color: var(--warning-text); }
+
+/* Triage card: urgency reads from position first, then the rail, then the
+   label. Colour is never the only signal. */
+.card {
+  position: relative; display: block; width: 100%; text-align: left;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 14px 16px 14px 19px;
+  margin-bottom: 12px; min-height: 44px;
+}
+.card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  border-radius: var(--radius-md) 0 0 var(--radius-md); background: var(--border-strong);
+}
+.card.is-critical::before { background: var(--critical); }
+.card.is-warning::before { background: var(--warning); }
+.card[aria-current="true"] { border-color: var(--border-strong); background: var(--surface-raised); }
+.card .name { font-size: 17px; }
+.card .meta { color: var(--text-muted); font-size: 13px; margin-top: 2px; }
+.card .reasons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; line-height: 1.3; padding: 4px 9px;
+  border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-secondary);
+}
+.pill.is-critical { color: var(--critical-text); border-color: color-mix(in oklab, var(--critical) 55%, transparent); }
+.pill.is-warning { color: var(--warning-text); border-color: color-mix(in oklab, var(--warning) 55%, transparent); }
+.pill svg { width: 14px; height: 14px; stroke-width: 2; }
+
+.panel {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 16px;
+}
+.panel + .panel { margin-top: 16px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; }
+.row + .row { border-top: 1px solid var(--border); }
+.muted { color: var(--text-muted); font-size: 13px; }
+.dot { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
+.dot.taken { background: var(--success); }
+.dot.missed { background: var(--warning); }
+.dot.open { background: var(--border-strong); }
+
+.empty { text-align: center; padding: 40px 20px; }
+.empty p { color: var(--text-muted); margin-bottom: 16px; }
+
+.sms {
+  font-family: ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, monospace;
+  font-size: 12px; line-height: 1.5; color: var(--text-secondary);
+  background: var(--surface-raised); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px 12px; overflow-x: auto;
+}
+.demo-note {
+  font-size: 12px; color: var(--text-muted);
+  border-top: 1px dashed var(--border-strong); padding-top: 12px; margin-top: 16px;
+}
+.stack { display: grid; gap: 12px; }
+.login { max-width: 360px; margin: 12vh auto; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <span class="wordmark">POST</span>
+  <span class="who" id="who"></span>
+  <span class="spacer"></span>
+  <button class="quiet sm" id="lang" aria-label="Badili lugha">EN</button>
+  <button class="quiet sm" id="refresh" hidden>↻</button>
+</header>
+
+<main id="app"></main>
+
+<script type="module">
+const T = {
+  sw: {
+    signIn: 'Ingia', phone: 'Namba ya simu', password: 'Nenosiri',
+    needsAttention: 'Wanaohitaji msaada', upcoming: 'Ziara zijazo',
+    critical: 'Hatari', warning: 'Angalia', stable: 'Wako sawa',
+    empty: 'Hakuna anayehitaji msaada sasa.', addPatient: 'Ongeza mgonjwa',
+    adherence: 'Unywaji wa dawa', doses: 'Dozi za karibuni', messages: 'Ujumbe',
+    resolve: 'Imeshughulikiwa', waiting: 'tangu', selectPatient: 'Chagua mgonjwa kuona historia yake.',
+    outbox: 'SMS zilizotumwa', simulate: 'Jibu kama mgonjwa', send: 'Tuma',
+    runTick: 'Endesha kikumbusho', taken: 'amekunywa', missed: 'hakunywa', open: 'inasubiri',
+    noDoses: 'Hakuna dozi bado.', demo: 'Vidhibiti vya onyesho — havipo kwenye toleo halisi.',
+    signInFailed: 'Namba au nenosiri si sahihi.',
+  },
+  en: {
+    signIn: 'Sign in', phone: 'Phone number', password: 'Password',
+    needsAttention: 'Needs attention', upcoming: 'Upcoming visits',
+    critical: 'Critical', warning: 'Attention', stable: 'Stable',
+    empty: 'No one needs attention right now.', addPatient: 'Add patient',
+    adherence: 'Adherence', doses: 'Recent doses', messages: 'Messages',
+    resolve: 'Handled', waiting: 'since', selectPatient: 'Select a patient to see their history.',
+    outbox: 'Sent SMS', simulate: 'Reply as patient', send: 'Send',
+    runTick: 'Run reminder tick', taken: 'taken', missed: 'missed', open: 'waiting',
+    noDoses: 'No doses yet.', demo: 'Demo controls — not part of the real product.',
+    signInFailed: 'Wrong number or password.',
+  },
+};
+
+const ICONS = {
+  'alert-triangle': '<path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4"/><path d="M12 17.5v.5"/>',
+  'clock-alert': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  'signal-off': '<path d="M3 20h18"/><path d="M6 20v-4"/><path d="M12 20V9"/><path d="m3 3 18 18"/>',
+  'message': '<path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2Z"/>',
+  'calendar': '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/>',
+};
+const ALERT_LABELS = {
+  red_flag_symptom: { sw: 'Dalili ya hatari', en: 'Red flag symptom', icon: 'alert-triangle' },
+  missed_meds:      { sw: 'Dawa haikunywewa', en: 'Missed meds',      icon: 'clock-alert' },
+  missed_visit:     { sw: 'Hakuja kliniki',   en: 'Missed visit',     icon: 'clock-alert' },
+  unreachable:      { sw: 'Hapatikani',       en: 'Unreachable',      icon: 'signal-off' },
+  unparsed_reply:   { sw: 'Ujumbe mpya',      en: 'New message',      icon: 'message' },
+  opted_out:        { sw: 'Amejitoa',         en: 'Opted out',        icon: 'signal-off' },
+};
+const alertLabel = (type) => ALERT_LABELS[type] ? ALERT_LABELS[type][lang] : type;
+const icon = (name) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
+        stroke-linejoin="round" aria-hidden="true">${ICONS[name] ?? ICONS['alert-triangle']}</svg>`;
+
+let lang = localStorage.getItem('post.lang') ?? 'sw';
+let token = localStorage.getItem('post.token') ?? '';
+let selected = null;
+const app = document.getElementById('app');
+const t = () => T[lang];
+
+const api = async (path, options = {}) => {
+  const res = await fetch(`/api${path}`, {
+    ...options,
+    headers: {
+      'content-type': 'application/json',
+      ...(token ? { authorization: `Bearer ${token}` } : {}),
+      ...options.headers,
+    },
+  });
+  if (res.status === 401) { token = ''; localStorage.removeItem('post.token'); renderLogin(); throw new Error('unauthorised'); }
+  return res.json();
+};
+
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const since = (iso) => {
+  const mins = Math.max(0, Math.round((Date.now() - new Date(iso)) / 60000));
+  const unit = lang === 'sw'
+    ? { m: 'dk', h: 'saa', d: 'siku' }
+    : { m: 'min', h: 'h', d: 'd' };
+  if (mins < 60) return `${mins} ${unit.m}`;
+  if (mins < 1440) return `${Math.round(mins / 60)} ${unit.h}`;
+  return `${Math.round(mins / 1440)} ${unit.d}`;
+};
+// A dose promised at 08:00 must read 08:00 wherever the doctor opens the
+// dashboard, so every timestamp is formatted in the patient's timezone.
+const clock = (iso, timezone) => new Date(iso).toLocaleString(lang === 'sw' ? 'sw-TZ' : 'en-GB',
+  { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
+    timeZone: timezone || 'Africa/Dar_es_Salaam' });
+const day = (isoDate) => {
+  const [y, m, d] = String(isoDate).split('-');
+  return `${d}/${m}/${y.slice(2)}`;
+};
+
+/* ------------------------------------------------------------------ login */
+function renderLogin() {
+  document.getElementById('who').textContent = '';
+  document.getElementById('refresh').hidden = true;
+  app.innerHTML = `
+    <form class="panel login stack" id="form">
+      <h1 style="font-size:20px">${t().signIn}</h1>
+      <div>
+        <label for="phone">${t().phone}</label>
+        <input id="phone" name="phone" inputmode="tel" value="+255700000001" autocomplete="username">
+      </div>
+      <div>
+        <label for="password">${t().password}</label>
+        <input id="password" name="password" type="password" value="post-demo-1234" autocomplete="current-password">
+      </div>
+      <button class="primary" type="submit">${t().signIn}</button>
+      <p class="muted" id="error" role="alert" aria-live="polite"></p>
+    </form>`;
+  document.getElementById('form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const res = await api('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ phone: phone.value, password: password.value }),
+    });
+    if (!res.token) { document.getElementById('error').textContent = t().signInFailed; return; }
+    token = res.token;
+    localStorage.setItem('post.token', token);
+    renderDashboard();
+  });
+}
+
+/* -------------------------------------------------------------- dashboard */
+async function renderDashboard() {
+  document.getElementById('refresh').hidden = false;
+  const [me, triage] = await Promise.all([api('/auth/me'), api('/triage')]);
+  document.getElementById('who').innerHTML = me.doctor
+    ? `${lang === 'sw' ? 'Dkt' : 'Dr'} ${esc(me.doctor.name)}` +
+      (me.doctor.facility ? `<span class="facility"> · ${esc(me.doctor.facility)}</span>` : '')
+    : '';
+
+  const counts = triage.counts;
+  const tiles = `
+    <div class="tiles">
+      <div class="tile is-critical"><div class="value num">${counts.critical}</div><div class="label">${t().critical}</div></div>
+      <div class="tile is-warning"><div class="value num">${counts.warning}</div><div class="label">${t().warning}</div></div>
+      <div class="tile"><div class="value num">${counts.stable}</div><div class="label">${t().stable}</div></div>
+    </div>`;
+
+  const list = triage.needs_attention.length === 0
+    ? `<div class="panel empty">
+         <p>${t().empty}</p>
+         <button class="primary">${t().addPatient}</button>
+       </div>`
+    : triage.needs_attention.map((entry) => `
+      <button class="card is-${entry.severity}" data-patient="${entry.patient.id}"
+              aria-current="${selected === entry.patient.id}">
+        <div class="name">${esc(entry.patient.name)}</div>
+        <div class="meta">${esc(entry.patient.diagnosis)} · ${t().waiting} ${since(entry.waiting_since)}</div>
+        <div class="reasons">
+          ${entry.reasons.map((r) => `
+            <span class="pill is-${r.severity}">${icon(r.icon)}${esc(lang === 'sw' ? r.label_sw : r.label_en)}</span>
+          `).join('')}
+        </div>
+      </button>`).join('');
+
+  const visits = triage.upcoming_visits.length === 0 ? '' : `
+    <div class="panel">
+      <h2 class="section-title">${t().upcoming}</h2>
+      ${triage.upcoming_visits.map((v) => `
+        <div class="row">
+          <div><div>${esc(v.name)}</div><div class="muted">${esc(v.location)}</div></div>
+          <div class="muted num">${day(v.visit_date)}</div>
+        </div>`).join('')}
+    </div>`;
+
+  app.innerHTML = `
+    <section>
+      ${tiles}
+      <h2 class="section-title">${t().needsAttention}
+        <span class="muted num">${triage.needs_attention.length}</span></h2>
+      ${list}
+      ${visits}
+    </section>
+    <aside id="detail" class="panel"><p class="muted">${t().selectPatient}</p></aside>
+    <section class="full" id="demo"></section>`;
+
+  for (const card of app.querySelectorAll('[data-patient]')) {
+    card.addEventListener('click', () => selectPatient(card.dataset.patient));
+  }
+  if (selected) selectPatient(selected);
+  renderDemoControls();
+}
+
+async function selectPatient(id) {
+  selected = id;
+  for (const card of app.querySelectorAll('[data-patient]')) {
+    card.setAttribute('aria-current', String(card.dataset.patient === id));
+  }
+  const data = await api(`/patients/${id}`);
+  const rate = data.adherence.adherenceRate;
+  const detail = document.getElementById('detail');
+
+  detail.innerHTML = `
+    <h2 style="font-size:20px">${esc(data.patient.name)}</h2>
+    <p class="muted">${esc(data.patient.diagnosis)}</p>
+    <p class="muted num">${esc(data.patient.phone)}</p>
+
+    <div class="row" style="margin-top:12px">
+      <span class="muted">${t().adherence}</span>
+      <span class="num">${rate === null ? '—' : `${Math.round(rate * 100)}%`}</span>
+    </div>
+
+    <h3 class="section-title" style="margin-top:20px">${t().doses}</h3>
+    ${data.doses.length === 0 ? `<p class="muted">${t().noDoses}</p>` : data.doses.slice(0, 8).map((d) => `
+      <div class="row">
+        <span><span class="dot ${d.taken === true ? 'taken' : d.taken === false ? 'missed' : 'open'}"></span>
+          ${esc(d.medication)}</span>
+        <span class="muted num">${clock(d.scheduled_for, data.patient.timezone)} · ${
+          d.taken === true ? t().taken : d.taken === false ? t().missed : t().open}</span>
+      </div>`).join('')}
+
+    ${data.alerts.filter((a) => !a.resolved).map((a) => `
+      <div class="row">
+        <span class="pill is-${a.severity}">${icon(ALERT_LABELS[a.type]?.icon)}${esc(alertLabel(a.type))}</span>
+        <button class="sm" data-resolve="${a.id}">${t().resolve}</button>
+      </div>`).join('')}
+
+    ${data.check_ins.filter((c) => c.response_raw).slice(0, 4).map((c) => `
+      <div class="sms" style="margin-top:8px">“${esc(c.response_raw)}” · ${clock(c.responded_at ?? c.sent_at, data.patient.timezone)}</div>
+    `).join('')}`;
+
+  for (const button of detail.querySelectorAll('[data-resolve]')) {
+    button.addEventListener('click', async () => {
+      await api(`/triage/alerts/${button.dataset.resolve}/resolve`, { method: 'POST' });
+      renderDashboard();
+    });
+  }
+}
+
+/* Demo-only: drive the loop from the browser. Mounted with POST_DEMO=1. */
+async function renderDemoControls() {
+  const box = document.getElementById('demo');
+  if (!box) return;
+  const outbox = await api('/dev/outbox').catch(() => null);
+  if (!outbox) return;
+
+  box.innerHTML = `
+    <div class="panel">
+      <h2 class="section-title">${t().outbox} <span class="muted">${esc(outbox.gateway)}</span></h2>
+      ${outbox.messages.slice(0, 6).map((m) => `
+        <div class="sms" style="margin-bottom:8px">
+          <div class="muted num">${esc(m.to_phone)} · ${esc(m.status)} · ${m.sent_at ? clock(m.sent_at, m.timezone) : clock(m.scheduled_for, m.timezone)}</div>
+          ${esc(m.body)}
+        </div>`).join('')}
+      <div class="demo-note">
+        <p style="margin-bottom:10px">${t().demo}</p>
+        <div class="stack" style="grid-template-columns: 1fr 1fr auto; align-items:end">
+          <div><label for="from">${t().simulate}</label>
+            <input id="from" value="${esc(outbox.messages[0]?.to_phone ?? '')}"></div>
+          <div><label for="text">SMS</label><input id="text" value="1"></div>
+          <button class="sm" id="reply">${t().send}</button>
+        </div>
+        <button class="sm" id="tick" style="margin-top:10px">${t().runTick}</button>
+      </div>
+    </div>`;
+
+  document.getElementById('reply').addEventListener('click', async () => {
+    await fetch('/api/webhooks/sms/inbound', {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ from: from.value, text: text.value, id: `ui-${Date.now()}` }),
+    });
+    renderDashboard();
+  });
+  document.getElementById('tick').addEventListener('click', async () => {
+    await api('/dev/tick', { method: 'POST', body: '{}' });
+    renderDashboard();
+  });
+}
+
+document.getElementById('lang').addEventListener('click', () => {
+  lang = lang === 'sw' ? 'en' : 'sw';
+  localStorage.setItem('post.lang', lang);
+  document.documentElement.lang = lang;
+  document.getElementById('lang').textContent = lang === 'sw' ? 'EN' : 'SW';
+  token ? renderDashboard() : renderLogin();
+});
+document.getElementById('refresh').addEventListener('click', () => renderDashboard());
+document.getElementById('lang').textContent = lang === 'sw' ? 'EN' : 'SW';
+document.documentElement.lang = lang;
+
+token ? renderDashboard().catch(renderLogin) : renderLogin();
+</script>
+</body>
+</html>

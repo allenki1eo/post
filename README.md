@@ -4,6 +4,21 @@ Post-treatment patient care continuity. After a doctor treats or discharges a pa
 
 Built for Tanzania, where transport cost and distance make return visits rare and follow-up inconsistent.
 
+## Running it
+
+The API and reminder engine live in [`server/`](server/) — Node + Express +
+Postgres, with the job queue in Postgres itself.
+
+```bash
+cd server && npm install && npm run migrate
+npm run demo                 # seeds a doctor, 5 patients, 2 days of history
+POST_DEMO=1 npm run dev      # http://localhost:3000
+```
+
+`npm test` runs 40 tests against a real Postgres, including the whole slice:
+discharge → care plan → SMS reminder → patient reply → missed dose → alert on
+the triage dashboard.
+
 ## Docs
 
 | Doc | What's in it |
@@ -11,6 +26,7 @@ Built for Tanzania, where transport cost and distance make return visits rare an
 | [docs/PRODUCT.md](docs/PRODUCT.md) | Problem, product model, user flows, data model, notification system, MVP scope |
 | [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) | Tokens — color, type, layout, motion, icons — plus SMS as a design surface |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Recommendations on the open questions, and the ones the reminder engine forces |
+| [server/README.md](server/README.md) | Architecture, what is deliberate, what is not built yet |
 
 ## UI skills
 
