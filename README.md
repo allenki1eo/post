@@ -1,8 +1,20 @@
-# UI Skills
+# POST
+
+Post-treatment patient care continuity. After a doctor treats or discharges a patient, POST keeps the care going: the patient gets medication and follow-up reminders (app push or SMS, so a smartphone is not required), and the doctor gets a dashboard triaged by who needs attention.
+
+Built for Tanzania, where transport cost and distance make return visits rare and follow-up inconsistent.
+
+## Docs
+
+| Doc | What's in it |
+| --- | --- |
+| [docs/PRODUCT.md](docs/PRODUCT.md) | Problem, product model, user flows, data model, notification system, MVP scope |
+| [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) | Tokens — color, type, layout, motion, icons — plus SMS as a design surface |
+| [docs/DECISIONS.md](docs/DECISIONS.md) | Recommendations on the open questions, and the ones the reminder engine forces |
+
+## UI skills
 
 Distilled UI craft rules, packaged as Claude Code skills so any session in this repo picks them up automatically.
-
-## What's here
 
 ```
 .claude/skills/
@@ -26,7 +38,7 @@ Distilled UI craft rules, packaged as Claude Code skills so any session in this 
 
 **Elsewhere** — the files are plain Markdown. Paste `ui-craft/SKILL.md` into any agent as a system rule, or read it yourself.
 
-## The two rules behind all the other rules
+## The two rules behind the rest
 
 **Frequency decides motion.** An animation on something a user triggers 300 times a day costs them 300 waits. High-frequency and keyboard-driven interactions get no animation; rare moments can afford delight.
 
