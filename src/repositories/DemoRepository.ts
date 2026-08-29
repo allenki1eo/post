@@ -65,7 +65,8 @@ export class DemoRepository implements Repository {
   }
 
   async getActiveCarePlan(patientId: string): Promise<CarePlan | undefined> {
-    return this.seed.cases.find((c) => c.patientId === patientId)?.carePlan;
+    const plan = this.seed.cases.find((c) => c.patientId === patientId)?.carePlan;
+    return plan ? rebaseDemoPlanToToday(plan, new Date().toISOString()) : undefined;
   }
 
   async getRecentCheckIns(patientId: string, limit = 14): Promise<CheckInResponse[]> {
@@ -223,6 +224,35 @@ export class DemoRepository implements Repository {
     const fixture = this.seed.agentRuns.find((f) => f.run.id === agentRunId);
     return fixture ? [...fixture.approvals] : [];
   }
+}
+
+/**
+ * DEMO ONLY: shift a seeded plan's window so the synthetic patient is always
+ * mid-plan, whatever day the demo is run. The seed files stay fixed (the
+ * evaluation cases depend on their exact dates); only the plan window and its
+ * medication schedule move, so today always has scheduled doses and a check-in
+ * to complete. A real deployment never rewrites plan dates.
+ */
+export function rebaseDemoPlanToToday(plan: CarePlan, nowIso: string): CarePlan {
+  const dayMs = 86_400_000;
+  const startOfToday = Math.floor(Date.parse(nowIso) / dayMs) * dayMs;
+  // Put "today" on day 2, so the plan is visibly in progress.
+  const shift = startOfToday - dayMs - Math.floor(Date.parse(plan.startsAt) / dayMs) * dayMs;
+  if (shift <= 0) {
+    return plan;
+  }
+  const move = (iso: string) => new Date(Date.parse(iso) + shift).toISOString();
+  return {
+    ...plan,
+    startsAt: move(plan.startsAt),
+    ...(plan.endsAt ? { endsAt: move(plan.endsAt) } : {}),
+    ...(plan.activatedAt ? { activatedAt: move(plan.activatedAt) } : {}),
+    medicationInstructions: plan.medicationInstructions.map((instruction) => ({
+      ...instruction,
+      startsAt: move(instruction.startsAt),
+      ...(instruction.endsAt ? { endsAt: move(instruction.endsAt) } : {}),
+    })),
+  };
 }
 
 let defaultRepository: DemoRepository | undefined;

@@ -2,10 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 
+import { useNotificationRouting } from '../../features/notifications/useNotificationRouting';
 import { colors } from '../../theme/tokens';
 
 export default function PatientTabLayout() {
   const { t } = useTranslation();
+  // A reminder tap opens the task it refers to.
+  useNotificationRouting();
   return (
     <Tabs
       screenOptions={{
@@ -59,6 +62,8 @@ export default function PatientTabLayout() {
           ),
         }}
       />
+      {/* The check-in is a pushed screen, not a sixth tab. */}
+      <Tabs.Screen name="check-in/[scheduleId]" options={{ href: null }} />
     </Tabs>
   );
 }

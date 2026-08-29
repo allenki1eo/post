@@ -1,65 +1,90 @@
-import { differenceInCalendarDays } from 'date-fns';
+import { useRouter } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { AppText } from '../../components/primitives/AppText';
+import { Banner } from '../../components/primitives/Banner';
 import { Button } from '../../components/primitives/Button';
 import { Screen } from '../../components/primitives/Screen';
 import { SectionHeading } from '../../components/primitives/SectionHeading';
+import { SyncBadge } from '../../components/primitives/SyncBadge';
 import type { SupportedLanguage } from '../../domain/models';
 import { DEMO_PATIENT_ID } from '../../features/auth/demoSession';
-import { getRepository } from '../../repositories';
+import { loadPatientToday } from '../../features/checkIns/patientToday';
+import { useScheduledReminders } from '../../features/notifications/useScheduledReminders';
 import { colors, radius, spacing } from '../../theme/tokens';
 import { useAsyncData } from '../../utils/useAsyncData';
+import { useFocusRefreshKey } from '../../utils/useFocusRefreshKey';
 
+/**
+ * Today: one primary action, the clinician's own medication wording, and an
+ * honest sync state. No risk score is ever shown to the patient.
+ */
 export default function Today() {
   const { t, i18n } = useTranslation();
+  const router = useRouter();
   const language = (i18n.language === 'sw' ? 'sw' : 'en') as SupportedLanguage;
 
-  const { data } = useAsyncData(async () => {
-    const repository = getRepository();
-    const patient = await repository.getPatient(DEMO_PATIENT_ID);
-    const plan = await repository.getActiveCarePlan(DEMO_PATIENT_ID);
-    return { patient, plan };
-  });
+  // Tab screens stay mounted; reload when the patient returns from a check-in.
+  const refreshKey = useFocusRefreshKey();
+  const { data } = useAsyncData(async () => loadPatientToday(DEMO_PATIENT_ID), [refreshKey]);
 
-  const plan = data?.plan;
-  const planTotalDays =
-    plan?.endsAt !== undefined
-      ? differenceInCalendarDays(new Date(plan.endsAt), new Date(plan.startsAt))
-      : undefined;
-  const planDay =
-    plan !== undefined && planTotalDays !== undefined
-      ? {
-          // Clamp to the plan window so a demo plan that started in the past
-          // never shows "Day 12 of 7".
-          day: Math.min(
-            planTotalDays,
-            Math.max(1, differenceInCalendarDays(new Date(), new Date(plan.startsAt)) + 1),
-          ),
-          total: planTotalDays,
-        }
-      : undefined;
+  // Reminders follow the active plan, the saved language, and the patient's
+  // notification preferences.
+  useScheduledReminders(data?.carePlan, data?.patient?.timezone ?? 'UTC');
+
+  const plan = data?.carePlan;
+  const schedule = data?.schedule;
+  const completed = data?.todaysCheckIn !== undefined;
 
   return (
     <Screen>
-      <AppText variant="title">
-        {t('patientToday.greeting', { name: data?.patient?.preferredName ?? '' })}
-      </AppText>
+      <View style={styles.header}>
+        <AppText variant="title">
+          {t('patientToday.greeting', { name: data?.patient?.preferredName ?? '' })}
+        </AppText>
+        {data ? <SyncBadge status={data.syncStatus} /> : null}
+      </View>
 
-      {plan ? (
+      {data?.usingCachedPlan ? (
+        <Banner tone="info" title={t('patientToday.cachedPlanNotice')} />
+      ) : null}
+
+      {plan && schedule ? (
         <>
-          {planDay ? (
+          {schedule.planDay !== undefined && schedule.planTotalDays !== undefined ? (
             <AppText variant="secondary" muted style={styles.planDay}>
-              {t('patientToday.planDay', planDay)}
+              {t('patientToday.planDay', {
+                day: schedule.planDay,
+                total: schedule.planTotalDays,
+              })}
             </AppText>
           ) : null}
 
           <View style={styles.primaryAction}>
-            <Button label={t('patientToday.startCheckIn')} onPress={() => {}} />
+            <Button
+              label={completed ? t('patientToday.reviewCheckIn') : t('patientToday.startCheckIn')}
+              kind={completed ? 'secondary' : 'primary'}
+              onPress={() =>
+                router.push(`/(patient)/check-in/${encodeURIComponent(schedule.scheduleId)}`)
+              }
+            />
+            {completed ? (
+              <AppText variant="secondary" color={colors.success} style={styles.completedNote}>
+                ✓ {t('patientToday.checkInCompleted')}
+              </AppText>
+            ) : null}
           </View>
 
           <SectionHeading label={t('patientToday.medicationTasksTitle')} />
+          <AppText variant="secondary" muted>
+            {schedule.expectedDoseIds.length === 0
+              ? t('patientToday.noDosesToday')
+              : t('patientToday.dosesToday', {
+                  confirmed: data?.todaysCheckIn?.confirmedDoseIds.length ?? 0,
+                  expected: schedule.expectedDoseIds.length,
+                })}
+          </AppText>
           {plan.medicationInstructions.map((instruction) => (
             <View key={instruction.id} style={styles.medicationItem}>
               <AppText variant="body" style={styles.medicationName}>
@@ -86,11 +111,18 @@ export default function Today() {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    gap: spacing.sm,
+  },
   planDay: {
     marginTop: spacing.xs,
   },
   primaryAction: {
     marginTop: spacing.xl,
+    gap: spacing.sm,
+  },
+  completedNote: {
+    marginTop: spacing.xs,
   },
   medicationItem: {
     backgroundColor: colors.surface,

@@ -1,5 +1,84 @@
 # Changelog
 
+## [0.2.0] — 2026-08-29 — Milestone 2: patient follow-up journey
+
+### Offline-first storage and sync
+
+- Local persistence behind a `LocalStore` interface: SQLite on device
+  (`SqliteLocalStore`, migrations with `PRAGMA user_version`), an in-memory
+  store for Jest and the web demo. The store factory is split by platform
+  extension so the native SQLite module never enters the web bundle.
+- A submitted check-in and its outbox operation are committed in one
+  transaction, then confirmed immediately — no connectivity required.
+- Outbox operations are immutable and carry an idempotency key
+  (`submit_check_in:<id>:r<revision>`), so retries can never create a
+  duplicate check-in. Retries use bounded exponential backoff (2s/4s/8s/16s,
+  then give up); a transport throw is treated as retryable rather than
+  dropping the patient's data.
+- `syncOnce` drains due operations and reflects the result in each check-in's
+  patient-visible sync state. A server-side `duplicate` is success, not an
+  error, which is what makes delivery exactly-once.
+
+### Check-in journey
+
+- Seven-step check-in wizard: dose confirmations, overall condition, the
+  template's own symptom questions (one per view), an optional note, and a
+  review step. All answers live in one component's state, so back navigation
+  preserves them.
+- Submitting evaluates the clinic's approved rules locally and shows the
+  clinic-authored urgent instruction immediately — offline, and with no model
+  in the path.
+- Resubmitting identical answers is idempotent; editing before sync creates a
+  new revision and a new operation, preserving history.
+- A confirmation for a dose that was not expected today is dropped rather than
+  recorded, and an unconfirmed dose is never inferred.
+
+### Patient screens
+
+- Today: live plan day, one primary action that reflects completion, doses
+  confirmed as a fraction, the clinician's exact medication wording, and a
+  sync badge that states the fact without blaming the user.
+- Progress: check-in completion, dose fraction, and neutral counts of what the
+  patient reported, with missing answers labeled missing rather than negative.
+  A 0–10 scale is deliberately not summarized as a count.
+- Profile: notification preferences, and an explicit second confirmation
+  before signing out while check-ins are still unsynced.
+- Today and Progress reload on focus, so returning from a check-in shows the
+  new state.
+
+### Notifications
+
+- Local reminders planned from the active care plan (pure `planNotifications`),
+  scheduled through an Expo adapter as a full replace so a plan or language
+  change leaves no stale reminders.
+- Medication reminders use the clinician's exact wording, but lock-screen text
+  hides it by default — the medicine name appears only if the patient opts
+  into previews. Check-in reminders are always neutral.
+- A reminder tap deep-links to the task; the payload carries only a route.
+
+### New primitives
+
+`ChoiceRow` (radio/checkbox), `ScaleInput`, `StepProgress`, `TextField`,
+`Banner`, `SyncBadge` — all with explicit states, 44pt targets, and room for
+Kiswahili text expansion.
+
+### Verification
+
+- 142 tests across 14 suites (41 new), covering backoff bounds, idempotency,
+  exactly-once sync, transport failure, local-day scheduling across offsets,
+  urgent evaluation offline, notification privacy defaults, progress counting,
+  and the wizard's back-preserves-answers, offline-submit, urgent-display,
+  bilingual, and no-risk-score behavior.
+- Typecheck, lint, and web export clean; screenshot QA in both languages
+  recorded in `docs/DESIGN_QA.md` (Review 2), which caught three real bugs.
+
+### Notes
+
+- `DemoRepository.getActiveCarePlan` rebases the seeded plan window onto the
+  current date so the synthetic demo is always mid-plan. This is demo-only and
+  clearly labeled; seed files and the evaluation cases are untouched.
+
+
 ## [0.1.0] — 2026-08-29 — Milestones 0 & 1
 
 ### Foundation (Milestone 0)
