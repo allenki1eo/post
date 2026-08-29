@@ -71,12 +71,17 @@ Native system font (excellent rendering, fast load, full Kiswahili support).
 | `SectionHeading` | — | Hierarchy from type + spacing |
 | `EmptyState` | — | Plain factual copy, no illustration filler |
 | `ErrorBoundary` | error | Recovery without exposing patient data |
+| `ChoiceRow` | default, selected, pressed, disabled | Radio or checkbox; indicator + `accessibilityState`, never color alone |
+| `ScaleInput` | default, selected, pressed | 0–10 scale as wrapped 44pt targets, not a slider (precise one-handed, screen-reader operable) |
+| `StepProgress` | — | "Step N of M" plus a static bar; announced as a progressbar, no animation |
+| `TextField` | default, error | Real label (not a placeholder), multiline, error announced as an alert |
+| `Banner` | urgent, review, info, success | Tone by text + glyph + color; urgent is announced as an alert |
+| `SyncBadge` | local, syncing, synced, failed | States the fact politely; never blames the user |
 
 To add in later milestones (per the specification's component discipline
-list): field, radio/checkbox, segmented control, banner variants, provenance
-label, verification label, share-scope selector, grant card, access-event
-row, agent-step row, approval panel, sheet, dialog, toast, skeleton,
-timeline, offline-state components.
+list): segmented control, provenance label, verification label, share-scope
+selector, grant card, access-event row, agent-step row, approval panel,
+sheet, dialog, toast, skeleton, timeline.
 
 ## Content rules
 

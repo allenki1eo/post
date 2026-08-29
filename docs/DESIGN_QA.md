@@ -1,5 +1,58 @@
 # Design QA Log
 
+## Review 2 — Milestone 2 patient follow-up journey (2026-08-29)
+
+### UI Skills routing flow
+
+Re-ran the routing flow for this milestone's UI work (form and wizard
+patterns):
+
+```bash
+npx ui-skills categories
+npx ui-skills list --category interaction
+npx ui-skills list --category accessibility
+```
+
+**Selected skill:** none newly loaded — the registry still exposes no React
+Native form/wizard skill, and `callstackincubator/react-native-best-practices`
+(loaded in Review 1) remains the only RN-targeted entry. Its guidance applied
+again in one concrete decision: the check-in keeps all answers in one
+component's state instead of remounting per step, so back navigation is a
+state change rather than a re-render of a fresh subtree. Web-only references
+(COSS UI field structure and state design; "You Don't Need Animations") were
+applied manually: labels are real labels rather than placeholders, every
+control has an explicit selected/disabled state, and the step progress bar is
+a static readout with no animation.
+
+### What was reviewed
+
+The exported web build driven end-to-end with Playwright at 360×740, in both
+languages: Today (empty, completed), the full seven-step check-in (doses,
+condition, 0–10 scale, yes/no, note, review), the urgent-match result, the
+saved-offline result, Progress with real counts, and the patient Profile with
+notification preferences. Screenshots in `docs/design-qa-m2/`.
+
+### Findings and decisions
+
+| # | Finding | Decision |
+|---|---|---|
+| 1 | Check-in route crashed on open (`Cannot read properties of undefined`) | Real bug found by QA, not by tests: the React Compiler hoists a memoized callback's dependency reads to render time, so `data!.carePlan` inside the submit handler ran before the loading guard. Fixed by narrowing `data?.…` into locals first and dropping the non-null assertions |
+| 2 | After submitting, Today still offered "Start check-in" and showed 0 confirmed doses | Tab screens stay mounted, so mount-time loads went stale. Added `useFocusRefreshKey` and made Today and Progress reload on focus |
+| 3 | Seeded plans sit in the past, so no doses were scheduled "today" | Added a clearly-labeled demo-only `rebaseDemoPlanToToday` in `DemoRepository` so the synthetic patient is always mid-plan. Seed files stay fixed; the evaluation cases still depend on their exact dates |
+| 4 | Progress reused "Today" and "Your medicines today" as section headings | Added dedicated `checkInsTitle` / `medicinesTitle` keys in both languages |
+| 5 | Expo web export failed: SQLite's WebAssembly worker pulled into the web bundle | Split the store factory by platform extension (`createStore.native.ts` vs `createStore.ts`) so web never resolves the native module |
+| 6 | Kiswahili check-in copy runs long ("Thibitisha dozi ulizotumia kweli tu…") | Verified no clipping at 360pt: choice rows wrap to three lines, help text wraps under the label, no fixed heights |
+| 7 | Dose rows needed to be unambiguous at a glance | Each row shows medicine, local time, and the clinician's exact wording; confirmation is a checkbox with `accessibilityState.checked`, never color alone |
+| 8 | Urgent result must not look like an app-generated verdict | The urgent banner shows the plan's clinic-authored instruction plus each matched rule's clinic-authored message, with `accessibilityRole="alert"`; nothing is paraphrased |
+| 9 | Anti-slop pass | No animation anywhere in the wizard, no spinner (the local save is instant), no progress ring or score, no cards nested inside cards |
+
+### Outstanding
+
+- Native device screenshots (iOS/Android) rather than the web export.
+- Reduced-motion check once any motion exists (there is none today).
+- Larger dynamic-type sweep at the OS maximum font size.
+
+
 Screenshot-based visual QA record. No screen is "done" after compilation
 alone; every milestone ends with a review against `docs/DESIGN_SYSTEM.md`
 and the task-relevant references.

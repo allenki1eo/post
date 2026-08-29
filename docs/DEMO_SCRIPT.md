@@ -1,3 +1,35 @@
+# Demo Script (Milestones 0–2)
+
+## Patient follow-up journey (Milestone 2)
+
+1. **Today** — the synthetic patient is mid-plan ("Day 2 of 7"), with one
+   primary action, the clinician's exact medication wording, and a sync badge.
+2. **Start check-in** — seven steps: confirm each scheduled dose (medicine,
+   local time, clinician wording), overall condition, a 0–10 scale, two yes/no
+   symptom questions, an optional note, then review.
+   - Press **Back**: every answer is still there.
+   - Skip a required answer: it says so instead of advancing.
+3. **Answer "Yes" to wound bleeding and 9 on the pain scale**, then submit.
+   The clinic's own urgent instruction appears immediately, together with each
+   matched rule's clinic-authored message — offline, with no model involved.
+   The check-in is already saved: the confirmation does not wait for the
+   network.
+4. **Done** → Today now shows "Check-in completed", "Doses confirmed today:
+   2 of 2", and the sync state.
+5. **Progress** — completion and doses as fractions, plus neutral counts of
+   what was reported. Missing answers are labeled missing, never counted as a
+   "no". No score anywhere.
+6. **Profile** — language switch, reminder preferences (lock-screen previews
+   are off by default, so the medicine name never appears there), and an
+   explicit warning before signing out with unsynced answers.
+7. **Kiswahili** — switch language in Profile and repeat: every screen,
+   including the wizard and the urgent instruction, is fully translated.
+
+To show offline behavior, turn off the network before submitting: the
+check-in still saves and confirms, the badge reads "Saved on this phone", and
+the outbox retries with bounded backoff when connectivity returns — arriving
+exactly once because of its idempotency key.
+
 # Demo Script (Milestone 0/1 state)
 
 Everything shown is synthetic; the clinician surfaces carry the

@@ -48,6 +48,10 @@ src/domain/            Zod schemas, models, adherence, workflow rules,
                        share-grant policy, provenance, safety verifier
 src/repositories/      Repository interface, DemoRepository (validated seeds),
                        ApiRepository (typed stub for the future backend)
+src/storage/           SQLite store + migrations, in-memory store, immutable
+                       outbox with idempotency keys, exactly-once sync engine
+src/features/          checkIns (schedule, submission, progress),
+                       notifications (planning, scheduling, deep links), auth
 src/agents/            Allowlisted tool registry, permission policy, approval
                        binding, DemoAgentRuntime (replayable, policy-enforcing)
 src/interoperability/  Pure FHIR R4 mappings, IPS-shaped export, import quarantine
@@ -74,7 +78,11 @@ tests/                 Jest suites for all of the above
 
 ## Status
 
-Milestones 0 and 1 of the build specification are complete; see
-`CHANGELOG.md` and `docs/DEMO_SCRIPT.md`. Next: Milestone 2 (patient
-follow-up journey: check-in wizard, SQLite outbox, offline sync states,
-local notifications).
+Milestones 0, 1, and 2 of the build specification are complete; see
+`CHANGELOG.md` and `docs/DEMO_SCRIPT.md`. The patient can complete an
+offline-first daily check-in that syncs exactly once, sees clinic-authored
+urgent instructions immediately with no model in the path, and gets local
+reminders that keep medicine names off the lock screen by default.
+
+Next: Milestone 3 (clinician follow-up journey: patient detail, assign plan,
+review decisions, evidence and processing-trace views).
