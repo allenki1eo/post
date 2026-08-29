@@ -1,0 +1,185 @@
+{
+  "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED",
+  "clinic": {
+    "id": "clinic-demo-1",
+    "name": "Mwangaza Demo Health Centre (Synthetic)",
+    "contactPhone": "+255 000 000 000",
+    "urgentContactInstructions": {
+      "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+      "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+    },
+    "synthetic": true
+  },
+  "clinicians": [
+    {
+      "id": "clinician-1",
+      "userId": "user-clin-1",
+      "clinicId": "clinic-demo-1",
+      "displayName": "Dr. Neema Demo",
+      "roleTitle": "Clinical Officer (synthetic)",
+      "synthetic": true
+    },
+    {
+      "id": "clinician-2",
+      "userId": "user-clin-2",
+      "clinicId": "clinic-demo-1",
+      "displayName": "Dkt. Baraka Demo",
+      "roleTitle": "Nurse (synthetic)",
+      "synthetic": true
+    }
+  ],
+  "users": [
+    {
+      "id": "user-clin-1",
+      "role": "clinician",
+      "displayName": "Dr. Neema Demo",
+      "preferredLanguage": "en",
+      "clinicId": "clinic-demo-1"
+    },
+    {
+      "id": "user-clin-2",
+      "role": "clinician",
+      "displayName": "Dkt. Baraka Demo",
+      "preferredLanguage": "sw",
+      "clinicId": "clinic-demo-1"
+    },
+    {
+      "id": "user-pat-1",
+      "role": "patient",
+      "displayName": "Amani Demo",
+      "preferredLanguage": "sw"
+    },
+    {
+      "id": "user-pat-2",
+      "role": "patient",
+      "displayName": "Zawadi Demo",
+      "preferredLanguage": "en"
+    }
+  ],
+  "patients": [
+    {
+      "id": "patient-01",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 1",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-mp-ontrack"
+    },
+    {
+      "id": "patient-02",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 2",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-mp-review"
+    },
+    {
+      "id": "patient-03",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 3",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-mp-urgent"
+    },
+    {
+      "id": "patient-04",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 4",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-ab-ontrack"
+    },
+    {
+      "id": "patient-05",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 5",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-ab-review"
+    },
+    {
+      "id": "patient-06",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 6",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-ab-urgent"
+    },
+    {
+      "id": "patient-07",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 7",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-ht-ontrack"
+    },
+    {
+      "id": "patient-08",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 8",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-ht-review"
+    },
+    {
+      "id": "patient-09",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 9",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-ht-urgent"
+    },
+    {
+      "id": "patient-10",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 10",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-db-ontrack"
+    },
+    {
+      "id": "patient-11",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 11",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-db-review"
+    },
+    {
+      "id": "patient-12",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Patient 12",
+      "timezone": "Africa/Dar_es_Salaam",
+      "activeCarePlanId": "plan-case-db-urgent"
+    },
+    {
+      "id": "patient-pp-01",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Passport Patient 1",
+      "timezone": "Africa/Dar_es_Salaam"
+    },
+    {
+      "id": "patient-pp-02",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Passport Patient 2",
+      "timezone": "Africa/Dar_es_Salaam"
+    },
+    {
+      "id": "patient-pp-03",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Passport Patient 3",
+      "timezone": "Africa/Dar_es_Salaam"
+    },
+    {
+      "id": "patient-pp-04",
+      "homeClinicId": "clinic-demo-1",
+      "synthetic": true,
+      "preferredName": "Synthetic Passport Patient 4",
+      "timezone": "Africa/Dar_es_Salaam"
+    }
+  ]
+}
