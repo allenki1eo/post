@@ -1,0 +1,702 @@
+{
+  "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED",
+  "templates": [
+    {
+      "id": "tmpl-minor-procedure",
+      "version": 1,
+      "name": {
+        "en": "Minor procedure recovery (demo)",
+        "sw": "Kupona baada ya upasuaji mdogo (mfano)"
+      },
+      "journeyType": "minor_procedure",
+      "checkInQuestions": [
+        {
+          "id": "q-mp-meds",
+          "key": "medication_confirmation",
+          "type": "medication_confirmation",
+          "label": {
+            "en": "Confirm each dose you have taken today.",
+            "sw": "Thibitisha kila dozi uliyotumia leo."
+          },
+          "helpText": {
+            "en": "Only confirm doses you actually took. Unconfirmed doses are recorded as not confirmed, never guessed.",
+            "sw": "Thibitisha dozi ulizotumia kweli tu. Dozi ambazo hukuthibitisha huandikwa kuwa hazijathibitishwa; hazibashiriwi."
+          },
+          "required": true
+        },
+        {
+          "id": "q-mp-overall",
+          "key": "overall_condition",
+          "type": "overall_condition",
+          "label": {
+            "en": "Compared to yesterday, how do you feel overall?",
+            "sw": "Ukilinganisha na jana, unajisikiaje kwa ujumla?"
+          },
+          "options": [
+            {
+              "value": "better",
+              "label": {
+                "en": "Better",
+                "sw": "Nafuu"
+              }
+            },
+            {
+              "value": "same",
+              "label": {
+                "en": "The same",
+                "sw": "Vilevile"
+              }
+            },
+            {
+              "value": "worse",
+              "label": {
+                "en": "Worse",
+                "sw": "Vibaya zaidi"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "id": "q-mp-pain",
+          "key": "pain_level",
+          "type": "number",
+          "label": {
+            "en": "How strong is your pain right now, from 0 (none) to 10 (worst)?",
+            "sw": "Maumivu yako yana nguvu kiasi gani sasa, kuanzia 0 (hakuna) hadi 10 (makali sana)?"
+          },
+          "required": true,
+          "minValue": 0,
+          "maxValue": 10
+        },
+        {
+          "id": "q-mp-bleeding",
+          "key": "wound_bleeding",
+          "type": "yes_no",
+          "label": {
+            "en": "Is the wound bleeding through the dressing?",
+            "sw": "Je, kidonda kinatoka damu kupita kwenye bendeji?"
+          },
+          "required": true
+        },
+        {
+          "id": "q-mp-fever",
+          "key": "fever",
+          "type": "yes_no",
+          "label": {
+            "en": "Have you had a fever today?",
+            "sw": "Je, umekuwa na homa leo?"
+          },
+          "required": true
+        }
+      ],
+      "defaultSchedule": {
+        "frequency": "daily",
+        "timesOfDay": [
+          "19:00"
+        ],
+        "durationDays": 7
+      },
+      "workflowRules": [
+        {
+          "id": "rule-mp-bleeding",
+          "priority": "urgent",
+          "description": {
+            "en": "Patient reported wound bleeding through the dressing",
+            "sw": "Mgonjwa ameripoti damu inayopita kwenye bendeji"
+          },
+          "condition": {
+            "kind": "answer_equals",
+            "questionId": "q-mp-bleeding",
+            "value": true
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your answers match the clinic’s urgent follow-up list. Please follow the urgent instructions from your clinic now.",
+            "sw": "MAANDISHI YA MFANO: Majibu yako yanalingana na orodha ya ufuatiliaji wa dharura ya kliniki. Tafadhali fuata maelekezo ya dharura ya kliniki yako sasa."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-mp-pain-high",
+          "priority": "urgent",
+          "description": {
+            "en": "Patient reported pain of 8 or more out of 10",
+            "sw": "Mgonjwa ameripoti maumivu ya 8 au zaidi kati ya 10"
+          },
+          "condition": {
+            "kind": "answer_gte",
+            "questionId": "q-mp-pain",
+            "value": 8
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: You reported strong pain. Please follow the urgent instructions from your clinic now.",
+            "sw": "MAANDISHI YA MFANO: Umeripoti maumivu makali. Tafadhali fuata maelekezo ya dharura ya kliniki yako sasa."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-mp-fever",
+          "priority": "review",
+          "description": {
+            "en": "Patient reported a fever during recovery",
+            "sw": "Mgonjwa ameripoti homa wakati wa kupona"
+          },
+          "condition": {
+            "kind": "answer_equals",
+            "questionId": "q-mp-fever",
+            "value": true
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your clinic will review this answer. Follow your written instructions and contact the clinic if you feel worse.",
+            "sw": "MAANDISHI YA MFANO: Kliniki yako itapitia jibu hili. Fuata maelekezo yako ya maandishi na wasiliana na kliniki ukijisikia vibaya zaidi."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-mp-adherence",
+          "priority": "review",
+          "description": {
+            "en": "Fewer than half of expected doses were confirmed",
+            "sw": "Chini ya nusu ya dozi zilizotarajiwa zimethibitishwa"
+          },
+          "condition": {
+            "kind": "adherence_below",
+            "threshold": 0.5,
+            "minimumExpectedDoses": 4
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: The clinic will review your medicine record with you at follow-up.",
+            "sw": "MAANDISHI YA MFANO: Kliniki itapitia kumbukumbu ya dawa zako pamoja nawe kwenye ufuatiliaji."
+          },
+          "missingDataBehavior": "ignore"
+        }
+      ],
+      "clinicalReview": {
+        "version": 1,
+        "status": "pending_review",
+        "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED"
+      }
+    },
+    {
+      "id": "tmpl-antibiotic",
+      "version": 1,
+      "name": {
+        "en": "Short antibiotic treatment (demo)",
+        "sw": "Matibabu mafupi ya antibiotiki (mfano)"
+      },
+      "journeyType": "antibiotic_course",
+      "checkInQuestions": [
+        {
+          "id": "q-ab-meds",
+          "key": "medication_confirmation",
+          "type": "medication_confirmation",
+          "label": {
+            "en": "Confirm each dose you have taken today.",
+            "sw": "Thibitisha kila dozi uliyotumia leo."
+          },
+          "helpText": {
+            "en": "Only confirm doses you actually took. Unconfirmed doses are recorded as not confirmed, never guessed.",
+            "sw": "Thibitisha dozi ulizotumia kweli tu. Dozi ambazo hukuthibitisha huandikwa kuwa hazijathibitishwa; hazibashiriwi."
+          },
+          "required": true
+        },
+        {
+          "id": "q-ab-overall",
+          "key": "overall_condition",
+          "type": "overall_condition",
+          "label": {
+            "en": "Compared to yesterday, how do you feel overall?",
+            "sw": "Ukilinganisha na jana, unajisikiaje kwa ujumla?"
+          },
+          "options": [
+            {
+              "value": "better",
+              "label": {
+                "en": "Better",
+                "sw": "Nafuu"
+              }
+            },
+            {
+              "value": "same",
+              "label": {
+                "en": "The same",
+                "sw": "Vilevile"
+              }
+            },
+            {
+              "value": "worse",
+              "label": {
+                "en": "Worse",
+                "sw": "Vibaya zaidi"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "id": "q-ab-fever",
+          "key": "fever",
+          "type": "yes_no",
+          "label": {
+            "en": "Have you had a fever today?",
+            "sw": "Je, umekuwa na homa leo?"
+          },
+          "required": true
+        },
+        {
+          "id": "q-ab-rash",
+          "key": "new_rash",
+          "type": "yes_no",
+          "label": {
+            "en": "Do you have a new skin rash today?",
+            "sw": "Je, una vipele vipya kwenye ngozi leo?"
+          },
+          "required": true
+        },
+        {
+          "id": "q-ab-vomiting",
+          "key": "vomiting",
+          "type": "yes_no",
+          "label": {
+            "en": "Have you vomited after taking the medicine?",
+            "sw": "Je, umetapika baada ya kutumia dawa?"
+          },
+          "required": true
+        }
+      ],
+      "defaultSchedule": {
+        "frequency": "daily",
+        "timesOfDay": [
+          "20:00"
+        ],
+        "durationDays": 7
+      },
+      "workflowRules": [
+        {
+          "id": "rule-ab-rash",
+          "priority": "urgent",
+          "description": {
+            "en": "Patient reported a new rash while taking the antibiotic",
+            "sw": "Mgonjwa ameripoti vipele vipya wakati wa kutumia antibiotiki"
+          },
+          "condition": {
+            "kind": "answer_equals",
+            "questionId": "q-ab-rash",
+            "value": true
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your answers match the clinic’s urgent follow-up list. Please follow the urgent instructions from your clinic now.",
+            "sw": "MAANDISHI YA MFANO: Majibu yako yanalingana na orodha ya ufuatiliaji wa dharura ya kliniki. Tafadhali fuata maelekezo ya dharura ya kliniki yako sasa."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-ab-fever",
+          "priority": "review",
+          "description": {
+            "en": "Patient reported a fever during the antibiotic course",
+            "sw": "Mgonjwa ameripoti homa wakati wa matibabu ya antibiotiki"
+          },
+          "condition": {
+            "kind": "answer_equals",
+            "questionId": "q-ab-fever",
+            "value": true
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your clinic will review this answer. Follow your written instructions and contact the clinic if you feel worse.",
+            "sw": "MAANDISHI YA MFANO: Kliniki yako itapitia jibu hili. Fuata maelekezo yako ya maandishi na wasiliana na kliniki ukijisikia vibaya zaidi."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-ab-adherence",
+          "priority": "review",
+          "description": {
+            "en": "Confirmed doses fell below 80% of expected doses",
+            "sw": "Dozi zilizothibitishwa zimeshuka chini ya asilimia 80 ya zilizotarajiwa"
+          },
+          "condition": {
+            "kind": "adherence_below",
+            "threshold": 0.8,
+            "minimumExpectedDoses": 4
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: The clinic will review your medicine record with you at follow-up.",
+            "sw": "MAANDISHI YA MFANO: Kliniki itapitia kumbukumbu ya dawa zako pamoja nawe kwenye ufuatiliaji."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-ab-missed",
+          "priority": "review",
+          "description": {
+            "en": "Two or more scheduled check-ins were missed",
+            "sw": "Ufuatiliaji wa ratiba mbili au zaidi haukufanyika"
+          },
+          "condition": {
+            "kind": "missed_check_ins",
+            "count": 2
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: The clinic noticed missed check-ins and may contact you.",
+            "sw": "MAANDISHI YA MFANO: Kliniki imegundua ufuatiliaji uliokosekana na inaweza kuwasiliana nawe."
+          },
+          "missingDataBehavior": "ignore"
+        }
+      ],
+      "clinicalReview": {
+        "version": 1,
+        "status": "pending_review",
+        "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED"
+      }
+    },
+    {
+      "id": "tmpl-hypertension",
+      "version": 1,
+      "name": {
+        "en": "Hypertension medication follow-up (demo)",
+        "sw": "Ufuatiliaji wa dawa za shinikizo la damu (mfano)"
+      },
+      "journeyType": "hypertension_medication",
+      "checkInQuestions": [
+        {
+          "id": "q-ht-meds",
+          "key": "medication_confirmation",
+          "type": "medication_confirmation",
+          "label": {
+            "en": "Confirm each dose you have taken today.",
+            "sw": "Thibitisha kila dozi uliyotumia leo."
+          },
+          "helpText": {
+            "en": "Only confirm doses you actually took. Unconfirmed doses are recorded as not confirmed, never guessed.",
+            "sw": "Thibitisha dozi ulizotumia kweli tu. Dozi ambazo hukuthibitisha huandikwa kuwa hazijathibitishwa; hazibashiriwi."
+          },
+          "required": true
+        },
+        {
+          "id": "q-ht-overall",
+          "key": "overall_condition",
+          "type": "overall_condition",
+          "label": {
+            "en": "Compared to yesterday, how do you feel overall?",
+            "sw": "Ukilinganisha na jana, unajisikiaje kwa ujumla?"
+          },
+          "options": [
+            {
+              "value": "better",
+              "label": {
+                "en": "Better",
+                "sw": "Nafuu"
+              }
+            },
+            {
+              "value": "same",
+              "label": {
+                "en": "The same",
+                "sw": "Vilevile"
+              }
+            },
+            {
+              "value": "worse",
+              "label": {
+                "en": "Worse",
+                "sw": "Vibaya zaidi"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "id": "q-ht-dizzy",
+          "key": "dizziness",
+          "type": "yes_no",
+          "label": {
+            "en": "Have you felt dizzy or faint today?",
+            "sw": "Je, umehisi kizunguzungu au kuzimia leo?"
+          },
+          "required": true
+        },
+        {
+          "id": "q-ht-headache",
+          "key": "headache_severity",
+          "type": "number",
+          "label": {
+            "en": "If you have a headache, how strong is it from 0 (none) to 10 (worst)?",
+            "sw": "Kama una maumivu ya kichwa, yana nguvu kiasi gani kuanzia 0 (hakuna) hadi 10 (makali sana)?"
+          },
+          "required": true,
+          "minValue": 0,
+          "maxValue": 10
+        },
+        {
+          "id": "q-ht-swelling",
+          "key": "leg_swelling",
+          "type": "yes_no",
+          "label": {
+            "en": "Do you have new swelling of the legs or feet?",
+            "sw": "Je, una uvimbe mpya wa miguu?"
+          },
+          "required": true
+        }
+      ],
+      "defaultSchedule": {
+        "frequency": "daily",
+        "timesOfDay": [
+          "09:00"
+        ],
+        "durationDays": 30
+      },
+      "workflowRules": [
+        {
+          "id": "rule-ht-headache",
+          "priority": "urgent",
+          "description": {
+            "en": "Patient reported a severe headache of 8 or more out of 10",
+            "sw": "Mgonjwa ameripoti maumivu makali ya kichwa ya 8 au zaidi kati ya 10"
+          },
+          "condition": {
+            "kind": "answer_gte",
+            "questionId": "q-ht-headache",
+            "value": 8
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your answers match the clinic’s urgent follow-up list. Please follow the urgent instructions from your clinic now.",
+            "sw": "MAANDISHI YA MFANO: Majibu yako yanalingana na orodha ya ufuatiliaji wa dharura ya kliniki. Tafadhali fuata maelekezo ya dharura ya kliniki yako sasa."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-ht-dizzy",
+          "priority": "review",
+          "description": {
+            "en": "Patient reported dizziness",
+            "sw": "Mgonjwa ameripoti kizunguzungu"
+          },
+          "condition": {
+            "kind": "answer_equals",
+            "questionId": "q-ht-dizzy",
+            "value": true
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your clinic will review this answer at follow-up.",
+            "sw": "MAANDISHI YA MFANO: Kliniki yako itapitia jibu hili kwenye ufuatiliaji."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-ht-adherence",
+          "priority": "review",
+          "description": {
+            "en": "Confirmed doses fell below 80% of expected doses",
+            "sw": "Dozi zilizothibitishwa zimeshuka chini ya asilimia 80 ya zilizotarajiwa"
+          },
+          "condition": {
+            "kind": "adherence_below",
+            "threshold": 0.8,
+            "minimumExpectedDoses": 6
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: The clinic will review your medicine record with you at follow-up.",
+            "sw": "MAANDISHI YA MFANO: Kliniki itapitia kumbukumbu ya dawa zako pamoja nawe kwenye ufuatiliaji."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-ht-missed",
+          "priority": "review",
+          "description": {
+            "en": "Three or more scheduled check-ins were missed",
+            "sw": "Ufuatiliaji wa ratiba tatu au zaidi haukufanyika"
+          },
+          "condition": {
+            "kind": "missed_check_ins",
+            "count": 3
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: The clinic noticed missed check-ins and may contact you.",
+            "sw": "MAANDISHI YA MFANO: Kliniki imegundua ufuatiliaji uliokosekana na inaweza kuwasiliana nawe."
+          },
+          "missingDataBehavior": "ignore"
+        }
+      ],
+      "clinicalReview": {
+        "version": 1,
+        "status": "pending_review",
+        "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED"
+      }
+    },
+    {
+      "id": "tmpl-diabetes",
+      "version": 1,
+      "name": {
+        "en": "Diabetes medication follow-up (demo)",
+        "sw": "Ufuatiliaji wa dawa za kisukari (mfano)"
+      },
+      "journeyType": "diabetes_medication",
+      "checkInQuestions": [
+        {
+          "id": "q-db-meds",
+          "key": "medication_confirmation",
+          "type": "medication_confirmation",
+          "label": {
+            "en": "Confirm each dose you have taken today.",
+            "sw": "Thibitisha kila dozi uliyotumia leo."
+          },
+          "helpText": {
+            "en": "Only confirm doses you actually took. Unconfirmed doses are recorded as not confirmed, never guessed.",
+            "sw": "Thibitisha dozi ulizotumia kweli tu. Dozi ambazo hukuthibitisha huandikwa kuwa hazijathibitishwa; hazibashiriwi."
+          },
+          "required": true
+        },
+        {
+          "id": "q-db-overall",
+          "key": "overall_condition",
+          "type": "overall_condition",
+          "label": {
+            "en": "Compared to yesterday, how do you feel overall?",
+            "sw": "Ukilinganisha na jana, unajisikiaje kwa ujumla?"
+          },
+          "options": [
+            {
+              "value": "better",
+              "label": {
+                "en": "Better",
+                "sw": "Nafuu"
+              }
+            },
+            {
+              "value": "same",
+              "label": {
+                "en": "The same",
+                "sw": "Vilevile"
+              }
+            },
+            {
+              "value": "worse",
+              "label": {
+                "en": "Worse",
+                "sw": "Vibaya zaidi"
+              }
+            }
+          ],
+          "required": true
+        },
+        {
+          "id": "q-db-hypo",
+          "key": "low_sugar_symptoms",
+          "type": "yes_no",
+          "label": {
+            "en": "Have you had shaking, sweating, or sudden hunger today (signs your clinic listed for low sugar)?",
+            "sw": "Je, umepata kutetemeka, kutokwa jasho, au njaa ya ghafla leo (dalili ambazo kliniki yako iliorodhesha kwa sukari kushuka)?"
+          },
+          "required": true
+        },
+        {
+          "id": "q-db-thirst",
+          "key": "increased_thirst",
+          "type": "yes_no",
+          "label": {
+            "en": "Have you been much more thirsty than usual?",
+            "sw": "Je, umekuwa na kiu kubwa kuliko kawaida?"
+          },
+          "required": true
+        },
+        {
+          "id": "q-db-foot",
+          "key": "foot_sore",
+          "type": "yes_no",
+          "label": {
+            "en": "Do you have a new sore or wound on your foot?",
+            "sw": "Je, una kidonda kipya kwenye mguu wako?"
+          },
+          "required": true
+        }
+      ],
+      "defaultSchedule": {
+        "frequency": "daily",
+        "timesOfDay": [
+          "08:30"
+        ],
+        "durationDays": 30
+      },
+      "workflowRules": [
+        {
+          "id": "rule-db-hypo",
+          "priority": "urgent",
+          "description": {
+            "en": "Patient reported the clinic-listed signs of low sugar",
+            "sw": "Mgonjwa ameripoti dalili zilizoorodheshwa na kliniki za sukari kushuka"
+          },
+          "condition": {
+            "kind": "answer_equals",
+            "questionId": "q-db-hypo",
+            "value": true
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your answers match the clinic’s urgent follow-up list. Please follow the urgent instructions from your clinic now.",
+            "sw": "MAANDISHI YA MFANO: Majibu yako yanalingana na orodha ya ufuatiliaji wa dharura ya kliniki. Tafadhali fuata maelekezo ya dharura ya kliniki yako sasa."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-db-foot",
+          "priority": "review",
+          "description": {
+            "en": "Patient reported a new foot sore",
+            "sw": "Mgonjwa ameripoti kidonda kipya cha mguu"
+          },
+          "condition": {
+            "kind": "answer_equals",
+            "questionId": "q-db-foot",
+            "value": true
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: Your clinic will review this answer at follow-up.",
+            "sw": "MAANDISHI YA MFANO: Kliniki yako itapitia jibu hili kwenye ufuatiliaji."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-db-adherence",
+          "priority": "review",
+          "description": {
+            "en": "Confirmed doses fell below 80% of expected doses",
+            "sw": "Dozi zilizothibitishwa zimeshuka chini ya asilimia 80 ya zilizotarajiwa"
+          },
+          "condition": {
+            "kind": "adherence_below",
+            "threshold": 0.8,
+            "minimumExpectedDoses": 4
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: The clinic will review your medicine record with you at follow-up.",
+            "sw": "MAANDISHI YA MFANO: Kliniki itapitia kumbukumbu ya dawa zako pamoja nawe kwenye ufuatiliaji."
+          },
+          "missingDataBehavior": "ignore"
+        },
+        {
+          "id": "rule-db-missed",
+          "priority": "review",
+          "description": {
+            "en": "Two or more scheduled check-ins were missed",
+            "sw": "Ufuatiliaji wa ratiba mbili au zaidi haukufanyika"
+          },
+          "condition": {
+            "kind": "missed_check_ins",
+            "count": 2
+          },
+          "messageOnMatch": {
+            "en": "SAMPLE TEXT: The clinic noticed missed check-ins and may contact you.",
+            "sw": "MAANDISHI YA MFANO: Kliniki imegundua ufuatiliaji uliokosekana na inaweza kuwasiliana nawe."
+          },
+          "missingDataBehavior": "ignore"
+        }
+      ],
+      "clinicalReview": {
+        "version": 1,
+        "status": "pending_review",
+        "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED"
+      }
+    }
+  ]
+}

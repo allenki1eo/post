@@ -1,0 +1,1536 @@
+{
+  "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED",
+  "cases": [
+    {
+      "id": "case-mp-ontrack",
+      "synthetic": true,
+      "journeyType": "minor_procedure",
+      "templateId": "tmpl-minor-procedure",
+      "templateVersion": 1,
+      "patientId": "patient-01",
+      "carePlan": {
+        "id": "plan-case-mp-ontrack",
+        "patientId": "patient-01",
+        "templateId": "tmpl-minor-procedure",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-08-25T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-paracetamol",
+            "displayName": "Paracetamol 500 mg",
+            "clinicianWording": {
+              "en": "Take one 500 mg paracetamol tablet in the morning and one in the evening after food.",
+              "sw": "Meza kidonge kimoja cha paracetamol 500 mg asubuhi na kimoja jioni baada ya chakula."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "20:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-08-25T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "19:00"
+          ],
+          "durationDays": 7
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-mp-ontrack-d1",
+          "scheduleId": "sch-case-mp-ontrack-d1",
+          "carePlanId": "plan-case-mp-ontrack",
+          "patientId": "patient-01",
+          "answers": [
+            {
+              "questionId": "q-mp-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-mp-pain",
+              "value": 2
+            },
+            {
+              "questionId": "q-mp-bleeding",
+              "value": false
+            },
+            {
+              "questionId": "q-mp-fever",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-paracetamol@2026-08-18T08:00",
+            "med-paracetamol@2026-08-18T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-paracetamol@2026-08-18T08:00",
+            "med-paracetamol@2026-08-18T20:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-mp-ontrack-d2",
+          "scheduleId": "sch-case-mp-ontrack-d2",
+          "carePlanId": "plan-case-mp-ontrack",
+          "patientId": "patient-01",
+          "answers": [
+            {
+              "questionId": "q-mp-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-mp-pain",
+              "value": 2
+            },
+            {
+              "questionId": "q-mp-bleeding",
+              "value": false
+            },
+            {
+              "questionId": "q-mp-fever",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-paracetamol@2026-08-19T08:00",
+            "med-paracetamol@2026-08-19T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-paracetamol@2026-08-19T08:00",
+            "med-paracetamol@2026-08-19T20:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "on_track",
+      "expectedMatchedRuleIds": [],
+      "expectedEvidenceReferences": [],
+      "expectedReason": "All answers benign and every expected dose confirmed."
+    },
+    {
+      "id": "case-mp-review",
+      "synthetic": true,
+      "journeyType": "minor_procedure",
+      "templateId": "tmpl-minor-procedure",
+      "templateVersion": 1,
+      "patientId": "patient-02",
+      "carePlan": {
+        "id": "plan-case-mp-review",
+        "patientId": "patient-02",
+        "templateId": "tmpl-minor-procedure",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-08-25T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-paracetamol",
+            "displayName": "Paracetamol 500 mg",
+            "clinicianWording": {
+              "en": "Take one 500 mg paracetamol tablet in the morning and one in the evening after food.",
+              "sw": "Meza kidonge kimoja cha paracetamol 500 mg asubuhi na kimoja jioni baada ya chakula."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "20:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-08-25T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "19:00"
+          ],
+          "durationDays": 7
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-mp-review-d1",
+          "scheduleId": "sch-case-mp-review-d1",
+          "carePlanId": "plan-case-mp-review",
+          "patientId": "patient-02",
+          "answers": [
+            {
+              "questionId": "q-mp-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-mp-pain",
+              "value": 2
+            },
+            {
+              "questionId": "q-mp-bleeding",
+              "value": false
+            },
+            {
+              "questionId": "q-mp-fever",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-paracetamol@2026-08-18T08:00",
+            "med-paracetamol@2026-08-18T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-paracetamol@2026-08-18T08:00",
+            "med-paracetamol@2026-08-18T20:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-mp-review-d2",
+          "scheduleId": "sch-case-mp-review-d2",
+          "carePlanId": "plan-case-mp-review",
+          "patientId": "patient-02",
+          "answers": [
+            {
+              "questionId": "q-mp-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-mp-pain",
+              "value": 2
+            },
+            {
+              "questionId": "q-mp-bleeding",
+              "value": false
+            },
+            {
+              "questionId": "q-mp-fever",
+              "value": true
+            }
+          ],
+          "expectedDoseIds": [
+            "med-paracetamol@2026-08-19T08:00",
+            "med-paracetamol@2026-08-19T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-paracetamol@2026-08-19T08:00",
+            "med-paracetamol@2026-08-19T20:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "review",
+      "expectedMatchedRuleIds": [
+        "rule-mp-fever"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-mp-fever"
+        }
+      ],
+      "expectedReason": "Fever reported on the latest check-in; clinic review rule matched."
+    },
+    {
+      "id": "case-mp-urgent",
+      "synthetic": true,
+      "journeyType": "minor_procedure",
+      "templateId": "tmpl-minor-procedure",
+      "templateVersion": 1,
+      "patientId": "patient-03",
+      "carePlan": {
+        "id": "plan-case-mp-urgent",
+        "patientId": "patient-03",
+        "templateId": "tmpl-minor-procedure",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-08-25T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-paracetamol",
+            "displayName": "Paracetamol 500 mg",
+            "clinicianWording": {
+              "en": "Take one 500 mg paracetamol tablet in the morning and one in the evening after food.",
+              "sw": "Meza kidonge kimoja cha paracetamol 500 mg asubuhi na kimoja jioni baada ya chakula."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "20:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-08-25T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "19:00"
+          ],
+          "durationDays": 7
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-mp-urgent-d1",
+          "scheduleId": "sch-case-mp-urgent-d1",
+          "carePlanId": "plan-case-mp-urgent",
+          "patientId": "patient-03",
+          "answers": [
+            {
+              "questionId": "q-mp-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-mp-pain",
+              "value": 2
+            },
+            {
+              "questionId": "q-mp-bleeding",
+              "value": false
+            },
+            {
+              "questionId": "q-mp-fever",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-paracetamol@2026-08-18T08:00",
+            "med-paracetamol@2026-08-18T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-paracetamol@2026-08-18T08:00",
+            "med-paracetamol@2026-08-18T20:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-mp-urgent-d2",
+          "scheduleId": "sch-case-mp-urgent-d2",
+          "carePlanId": "plan-case-mp-urgent",
+          "patientId": "patient-03",
+          "answers": [
+            {
+              "questionId": "q-mp-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-mp-pain",
+              "value": 5
+            },
+            {
+              "questionId": "q-mp-bleeding",
+              "value": true
+            },
+            {
+              "questionId": "q-mp-fever",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-paracetamol@2026-08-19T08:00",
+            "med-paracetamol@2026-08-19T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-paracetamol@2026-08-19T08:00",
+            "med-paracetamol@2026-08-19T20:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "urgent",
+      "expectedMatchedRuleIds": [
+        "rule-mp-bleeding"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-mp-bleeding"
+        }
+      ],
+      "expectedReason": "Wound bleeding reported; clinic urgent rule matched."
+    },
+    {
+      "id": "case-ab-ontrack",
+      "synthetic": true,
+      "journeyType": "antibiotic_course",
+      "templateId": "tmpl-antibiotic",
+      "templateVersion": 1,
+      "patientId": "patient-04",
+      "carePlan": {
+        "id": "plan-case-ab-ontrack",
+        "patientId": "patient-04",
+        "templateId": "tmpl-antibiotic",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-08-25T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-amoxicillin",
+            "displayName": "Amoxicillin 500 mg",
+            "clinicianWording": {
+              "en": "Take one amoxicillin 500 mg capsule in the morning and one in the evening until finished.",
+              "sw": "Meza kidonge kimoja cha amoxicillin 500 mg asubuhi na kimoja jioni hadi dawa iishe."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "20:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-08-25T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "20:00"
+          ],
+          "durationDays": 7
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-ab-ontrack-d1",
+          "scheduleId": "sch-case-ab-ontrack-d1",
+          "carePlanId": "plan-case-ab-ontrack",
+          "patientId": "patient-04",
+          "answers": [
+            {
+              "questionId": "q-ab-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-ab-fever",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-rash",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-vomiting",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amoxicillin@2026-08-18T08:00",
+            "med-amoxicillin@2026-08-18T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amoxicillin@2026-08-18T08:00",
+            "med-amoxicillin@2026-08-18T20:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-ab-ontrack-d2",
+          "scheduleId": "sch-case-ab-ontrack-d2",
+          "carePlanId": "plan-case-ab-ontrack",
+          "patientId": "patient-04",
+          "answers": [
+            {
+              "questionId": "q-ab-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-ab-fever",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-rash",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-vomiting",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amoxicillin@2026-08-19T08:00",
+            "med-amoxicillin@2026-08-19T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amoxicillin@2026-08-19T08:00",
+            "med-amoxicillin@2026-08-19T20:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "on_track",
+      "expectedMatchedRuleIds": [],
+      "expectedEvidenceReferences": [],
+      "expectedReason": "All answers benign and every expected dose confirmed."
+    },
+    {
+      "id": "case-ab-review",
+      "synthetic": true,
+      "journeyType": "antibiotic_course",
+      "templateId": "tmpl-antibiotic",
+      "templateVersion": 1,
+      "patientId": "patient-05",
+      "carePlan": {
+        "id": "plan-case-ab-review",
+        "patientId": "patient-05",
+        "templateId": "tmpl-antibiotic",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-08-25T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-amoxicillin",
+            "displayName": "Amoxicillin 500 mg",
+            "clinicianWording": {
+              "en": "Take one amoxicillin 500 mg capsule in the morning and one in the evening until finished.",
+              "sw": "Meza kidonge kimoja cha amoxicillin 500 mg asubuhi na kimoja jioni hadi dawa iishe."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "20:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-08-25T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "20:00"
+          ],
+          "durationDays": 7
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-ab-review-d1",
+          "scheduleId": "sch-case-ab-review-d1",
+          "carePlanId": "plan-case-ab-review",
+          "patientId": "patient-05",
+          "answers": [
+            {
+              "questionId": "q-ab-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-ab-fever",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-rash",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-vomiting",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amoxicillin@2026-08-18T08:00",
+            "med-amoxicillin@2026-08-18T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amoxicillin@2026-08-18T08:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-ab-review-d2",
+          "scheduleId": "sch-case-ab-review-d2",
+          "carePlanId": "plan-case-ab-review",
+          "patientId": "patient-05",
+          "answers": [
+            {
+              "questionId": "q-ab-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-ab-fever",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-rash",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-vomiting",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amoxicillin@2026-08-19T08:00",
+            "med-amoxicillin@2026-08-19T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amoxicillin@2026-08-19T08:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "review",
+      "expectedMatchedRuleIds": [
+        "rule-ab-adherence"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-ab-adherence"
+        }
+      ],
+      "expectedReason": "Only 2 of 4 expected doses confirmed (below the 80% review threshold)."
+    },
+    {
+      "id": "case-ab-urgent",
+      "synthetic": true,
+      "journeyType": "antibiotic_course",
+      "templateId": "tmpl-antibiotic",
+      "templateVersion": 1,
+      "patientId": "patient-06",
+      "carePlan": {
+        "id": "plan-case-ab-urgent",
+        "patientId": "patient-06",
+        "templateId": "tmpl-antibiotic",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-08-25T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-amoxicillin",
+            "displayName": "Amoxicillin 500 mg",
+            "clinicianWording": {
+              "en": "Take one amoxicillin 500 mg capsule in the morning and one in the evening until finished.",
+              "sw": "Meza kidonge kimoja cha amoxicillin 500 mg asubuhi na kimoja jioni hadi dawa iishe."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "20:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-08-25T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "20:00"
+          ],
+          "durationDays": 7
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-ab-urgent-d1",
+          "scheduleId": "sch-case-ab-urgent-d1",
+          "carePlanId": "plan-case-ab-urgent",
+          "patientId": "patient-06",
+          "answers": [
+            {
+              "questionId": "q-ab-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-ab-fever",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-rash",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-vomiting",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amoxicillin@2026-08-18T08:00",
+            "med-amoxicillin@2026-08-18T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amoxicillin@2026-08-18T08:00",
+            "med-amoxicillin@2026-08-18T20:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-ab-urgent-d2",
+          "scheduleId": "sch-case-ab-urgent-d2",
+          "carePlanId": "plan-case-ab-urgent",
+          "patientId": "patient-06",
+          "answers": [
+            {
+              "questionId": "q-ab-overall",
+              "value": "better"
+            },
+            {
+              "questionId": "q-ab-fever",
+              "value": false
+            },
+            {
+              "questionId": "q-ab-rash",
+              "value": true
+            },
+            {
+              "questionId": "q-ab-vomiting",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amoxicillin@2026-08-19T08:00",
+            "med-amoxicillin@2026-08-19T20:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amoxicillin@2026-08-19T08:00",
+            "med-amoxicillin@2026-08-19T20:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "urgent",
+      "expectedMatchedRuleIds": [
+        "rule-ab-rash"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-ab-rash"
+        }
+      ],
+      "expectedReason": "New rash reported while taking the antibiotic; clinic urgent rule matched."
+    },
+    {
+      "id": "case-ht-ontrack",
+      "synthetic": true,
+      "journeyType": "hypertension_medication",
+      "templateId": "tmpl-hypertension",
+      "templateVersion": 1,
+      "patientId": "patient-07",
+      "carePlan": {
+        "id": "plan-case-ht-ontrack",
+        "patientId": "patient-07",
+        "templateId": "tmpl-hypertension",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-09-17T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-amlodipine",
+            "displayName": "Amlodipine 5 mg",
+            "clinicianWording": {
+              "en": "Take one amlodipine 5 mg tablet every morning.",
+              "sw": "Meza kidonge kimoja cha amlodipine 5 mg kila asubuhi."
+            },
+            "scheduledTimes": [
+              "08:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-09-17T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "09:00"
+          ],
+          "durationDays": 30
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-ht-ontrack-d1",
+          "scheduleId": "sch-case-ht-ontrack-d1",
+          "carePlanId": "plan-case-ht-ontrack",
+          "patientId": "patient-07",
+          "answers": [
+            {
+              "questionId": "q-ht-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-ht-dizzy",
+              "value": false
+            },
+            {
+              "questionId": "q-ht-headache",
+              "value": 1
+            },
+            {
+              "questionId": "q-ht-swelling",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amlodipine@2026-08-18T08:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amlodipine@2026-08-18T08:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-ht-ontrack-d2",
+          "scheduleId": "sch-case-ht-ontrack-d2",
+          "carePlanId": "plan-case-ht-ontrack",
+          "patientId": "patient-07",
+          "answers": [
+            {
+              "questionId": "q-ht-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-ht-dizzy",
+              "value": false
+            },
+            {
+              "questionId": "q-ht-headache",
+              "value": 1
+            },
+            {
+              "questionId": "q-ht-swelling",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amlodipine@2026-08-19T08:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amlodipine@2026-08-19T08:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "on_track",
+      "expectedMatchedRuleIds": [],
+      "expectedEvidenceReferences": [],
+      "expectedReason": "All answers benign and every expected dose confirmed."
+    },
+    {
+      "id": "case-ht-review",
+      "synthetic": true,
+      "journeyType": "hypertension_medication",
+      "templateId": "tmpl-hypertension",
+      "templateVersion": 1,
+      "patientId": "patient-08",
+      "carePlan": {
+        "id": "plan-case-ht-review",
+        "patientId": "patient-08",
+        "templateId": "tmpl-hypertension",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-09-17T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-amlodipine",
+            "displayName": "Amlodipine 5 mg",
+            "clinicianWording": {
+              "en": "Take one amlodipine 5 mg tablet every morning.",
+              "sw": "Meza kidonge kimoja cha amlodipine 5 mg kila asubuhi."
+            },
+            "scheduledTimes": [
+              "08:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-09-17T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "09:00"
+          ],
+          "durationDays": 30
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-ht-review-d1",
+          "scheduleId": "sch-case-ht-review-d1",
+          "carePlanId": "plan-case-ht-review",
+          "patientId": "patient-08",
+          "answers": [
+            {
+              "questionId": "q-ht-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-ht-dizzy",
+              "value": false
+            },
+            {
+              "questionId": "q-ht-headache",
+              "value": 1
+            },
+            {
+              "questionId": "q-ht-swelling",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amlodipine@2026-08-18T08:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amlodipine@2026-08-18T08:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-ht-review-d2",
+          "scheduleId": "sch-case-ht-review-d2",
+          "carePlanId": "plan-case-ht-review",
+          "patientId": "patient-08",
+          "answers": [
+            {
+              "questionId": "q-ht-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-ht-dizzy",
+              "value": true
+            },
+            {
+              "questionId": "q-ht-headache",
+              "value": 1
+            },
+            {
+              "questionId": "q-ht-swelling",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amlodipine@2026-08-19T08:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amlodipine@2026-08-19T08:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "review",
+      "expectedMatchedRuleIds": [
+        "rule-ht-dizzy"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-ht-dizzy"
+        }
+      ],
+      "expectedReason": "Dizziness reported on the latest check-in; clinic review rule matched."
+    },
+    {
+      "id": "case-ht-urgent",
+      "synthetic": true,
+      "journeyType": "hypertension_medication",
+      "templateId": "tmpl-hypertension",
+      "templateVersion": 1,
+      "patientId": "patient-09",
+      "carePlan": {
+        "id": "plan-case-ht-urgent",
+        "patientId": "patient-09",
+        "templateId": "tmpl-hypertension",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-09-17T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-amlodipine",
+            "displayName": "Amlodipine 5 mg",
+            "clinicianWording": {
+              "en": "Take one amlodipine 5 mg tablet every morning.",
+              "sw": "Meza kidonge kimoja cha amlodipine 5 mg kila asubuhi."
+            },
+            "scheduledTimes": [
+              "08:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-09-17T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "09:00"
+          ],
+          "durationDays": 30
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-ht-urgent-d1",
+          "scheduleId": "sch-case-ht-urgent-d1",
+          "carePlanId": "plan-case-ht-urgent",
+          "patientId": "patient-09",
+          "answers": [
+            {
+              "questionId": "q-ht-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-ht-dizzy",
+              "value": false
+            },
+            {
+              "questionId": "q-ht-headache",
+              "value": 1
+            },
+            {
+              "questionId": "q-ht-swelling",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amlodipine@2026-08-18T08:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amlodipine@2026-08-18T08:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-ht-urgent-d2",
+          "scheduleId": "sch-case-ht-urgent-d2",
+          "carePlanId": "plan-case-ht-urgent",
+          "patientId": "patient-09",
+          "answers": [
+            {
+              "questionId": "q-ht-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-ht-dizzy",
+              "value": false
+            },
+            {
+              "questionId": "q-ht-headache",
+              "value": 9
+            },
+            {
+              "questionId": "q-ht-swelling",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-amlodipine@2026-08-19T08:00"
+          ],
+          "confirmedDoseIds": [
+            "med-amlodipine@2026-08-19T08:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "urgent",
+      "expectedMatchedRuleIds": [
+        "rule-ht-headache"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-ht-headache"
+        }
+      ],
+      "expectedReason": "Severe headache (9 of 10) reported; clinic urgent rule matched."
+    },
+    {
+      "id": "case-db-ontrack",
+      "synthetic": true,
+      "journeyType": "diabetes_medication",
+      "templateId": "tmpl-diabetes",
+      "templateVersion": 1,
+      "patientId": "patient-10",
+      "carePlan": {
+        "id": "plan-case-db-ontrack",
+        "patientId": "patient-10",
+        "templateId": "tmpl-diabetes",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-09-17T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-metformin",
+            "displayName": "Metformin 500 mg",
+            "clinicianWording": {
+              "en": "Take one metformin 500 mg tablet with breakfast and one with dinner.",
+              "sw": "Meza kidonge kimoja cha metformin 500 mg na chakula cha asubuhi na kimoja na chakula cha jioni."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "19:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-09-17T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "08:30"
+          ],
+          "durationDays": 30
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-db-ontrack-d1",
+          "scheduleId": "sch-case-db-ontrack-d1",
+          "carePlanId": "plan-case-db-ontrack",
+          "patientId": "patient-10",
+          "answers": [
+            {
+              "questionId": "q-db-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-db-hypo",
+              "value": false
+            },
+            {
+              "questionId": "q-db-thirst",
+              "value": false
+            },
+            {
+              "questionId": "q-db-foot",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-metformin@2026-08-18T08:00",
+            "med-metformin@2026-08-18T19:00"
+          ],
+          "confirmedDoseIds": [
+            "med-metformin@2026-08-18T08:00",
+            "med-metformin@2026-08-18T19:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-db-ontrack-d2",
+          "scheduleId": "sch-case-db-ontrack-d2",
+          "carePlanId": "plan-case-db-ontrack",
+          "patientId": "patient-10",
+          "answers": [
+            {
+              "questionId": "q-db-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-db-hypo",
+              "value": false
+            },
+            {
+              "questionId": "q-db-thirst",
+              "value": false
+            },
+            {
+              "questionId": "q-db-foot",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-metformin@2026-08-19T08:00",
+            "med-metformin@2026-08-19T19:00"
+          ],
+          "confirmedDoseIds": [
+            "med-metformin@2026-08-19T08:00",
+            "med-metformin@2026-08-19T19:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "on_track",
+      "expectedMatchedRuleIds": [],
+      "expectedEvidenceReferences": [],
+      "expectedReason": "All answers benign and every expected dose confirmed."
+    },
+    {
+      "id": "case-db-review",
+      "synthetic": true,
+      "journeyType": "diabetes_medication",
+      "templateId": "tmpl-diabetes",
+      "templateVersion": 1,
+      "patientId": "patient-11",
+      "carePlan": {
+        "id": "plan-case-db-review",
+        "patientId": "patient-11",
+        "templateId": "tmpl-diabetes",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-09-17T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-metformin",
+            "displayName": "Metformin 500 mg",
+            "clinicianWording": {
+              "en": "Take one metformin 500 mg tablet with breakfast and one with dinner.",
+              "sw": "Meza kidonge kimoja cha metformin 500 mg na chakula cha asubuhi na kimoja na chakula cha jioni."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "19:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-09-17T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "08:30"
+          ],
+          "durationDays": 30
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-db-review-d1",
+          "scheduleId": "sch-case-db-review-d1",
+          "carePlanId": "plan-case-db-review",
+          "patientId": "patient-11",
+          "answers": [
+            {
+              "questionId": "q-db-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-db-hypo",
+              "value": false
+            },
+            {
+              "questionId": "q-db-thirst",
+              "value": false
+            },
+            {
+              "questionId": "q-db-foot",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-metformin@2026-08-18T08:00",
+            "med-metformin@2026-08-18T19:00"
+          ],
+          "confirmedDoseIds": [
+            "med-metformin@2026-08-18T08:00",
+            "med-metformin@2026-08-18T19:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [
+        "sch-case-db-review-missed-1",
+        "sch-case-db-review-missed-2"
+      ],
+      "expectedLabel": "review",
+      "expectedMatchedRuleIds": [
+        "rule-db-missed"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-db-missed"
+        }
+      ],
+      "expectedReason": "Two scheduled check-ins were missed; clinic review rule matched."
+    },
+    {
+      "id": "case-db-urgent",
+      "synthetic": true,
+      "journeyType": "diabetes_medication",
+      "templateId": "tmpl-diabetes",
+      "templateVersion": 1,
+      "patientId": "patient-12",
+      "carePlan": {
+        "id": "plan-case-db-urgent",
+        "patientId": "patient-12",
+        "templateId": "tmpl-diabetes",
+        "templateVersion": 1,
+        "status": "active",
+        "startsAt": "2026-08-18T06:00:00.000Z",
+        "endsAt": "2026-09-17T06:00:00.000Z",
+        "medicationInstructions": [
+          {
+            "id": "med-metformin",
+            "displayName": "Metformin 500 mg",
+            "clinicianWording": {
+              "en": "Take one metformin 500 mg tablet with breakfast and one with dinner.",
+              "sw": "Meza kidonge kimoja cha metformin 500 mg na chakula cha asubuhi na kimoja na chakula cha jioni."
+            },
+            "scheduledTimes": [
+              "08:00",
+              "19:00"
+            ],
+            "startsAt": "2026-08-18T06:00:00.000Z",
+            "endsAt": "2026-09-17T06:00:00.000Z"
+          }
+        ],
+        "checkInSchedule": {
+          "frequency": "daily",
+          "timesOfDay": [
+            "08:30"
+          ],
+          "durationDays": 30
+        },
+        "patientInstructions": {
+          "en": "SAMPLE TEXT: Rest, take your medicine as written, and complete the short daily check-in.",
+          "sw": "MAANDISHI YA MFANO: Pumzika, tumia dawa kama ilivyoandikwa, na jaza taarifa fupi ya kila siku."
+        },
+        "urgentInstructions": {
+          "en": "SAMPLE TEXT: If you feel seriously unwell, call the clinic day number or go to the nearest emergency department.",
+          "sw": "MAANDISHI YA MFANO: Ukijisikia mgonjwa sana, piga simu ya kliniki au nenda kituo cha dharura kilicho karibu nawe."
+        },
+        "activatedByClinicianId": "clinician-1",
+        "activatedAt": "2026-08-18T06:05:00.000Z"
+      },
+      "checkIns": [
+        {
+          "id": "checkin-case-db-urgent-d1",
+          "scheduleId": "sch-case-db-urgent-d1",
+          "carePlanId": "plan-case-db-urgent",
+          "patientId": "patient-12",
+          "answers": [
+            {
+              "questionId": "q-db-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-db-hypo",
+              "value": false
+            },
+            {
+              "questionId": "q-db-thirst",
+              "value": false
+            },
+            {
+              "questionId": "q-db-foot",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-metformin@2026-08-18T08:00",
+            "med-metformin@2026-08-18T19:00"
+          ],
+          "confirmedDoseIds": [
+            "med-metformin@2026-08-18T08:00",
+            "med-metformin@2026-08-18T19:00"
+          ],
+          "completedAt": "2026-08-18T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-18T19:30:00.000Z",
+          "syncStatus": "synced"
+        },
+        {
+          "id": "checkin-case-db-urgent-d2",
+          "scheduleId": "sch-case-db-urgent-d2",
+          "carePlanId": "plan-case-db-urgent",
+          "patientId": "patient-12",
+          "answers": [
+            {
+              "questionId": "q-db-overall",
+              "value": "same"
+            },
+            {
+              "questionId": "q-db-hypo",
+              "value": true
+            },
+            {
+              "questionId": "q-db-thirst",
+              "value": false
+            },
+            {
+              "questionId": "q-db-foot",
+              "value": false
+            }
+          ],
+          "expectedDoseIds": [
+            "med-metformin@2026-08-19T08:00",
+            "med-metformin@2026-08-19T19:00"
+          ],
+          "confirmedDoseIds": [
+            "med-metformin@2026-08-19T08:00",
+            "med-metformin@2026-08-19T19:00"
+          ],
+          "completedAt": "2026-08-19T19:30:00.000Z",
+          "deviceCreatedAt": "2026-08-19T19:30:00.000Z",
+          "syncStatus": "synced"
+        }
+      ],
+      "missedCheckInScheduleIds": [],
+      "expectedLabel": "urgent",
+      "expectedMatchedRuleIds": [
+        "rule-db-hypo"
+      ],
+      "expectedEvidenceReferences": [
+        {
+          "type": "rule",
+          "id": "rule-db-hypo"
+        }
+      ],
+      "expectedReason": "Clinic-listed low-sugar signs reported; clinic urgent rule matched."
+    }
+  ]
+}

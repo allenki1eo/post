@@ -1,0 +1,1591 @@
+{
+  "demoLabel": "FOR DEMONSTRATION - CLINICAL REVIEW REQUIRED",
+  "passports": [
+    {
+      "id": "passport-mp",
+      "synthetic": true,
+      "journeyType": "minor_procedure",
+      "patient": {
+        "id": "patient-pp-01",
+        "homeClinicId": "clinic-demo-1",
+        "synthetic": true,
+        "preferredName": "Synthetic Passport Patient 1",
+        "timezone": "Africa/Dar_es_Salaam"
+      },
+      "records": [
+        {
+          "id": "rec-passport-mp-1",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-20T10:00:00.000Z",
+          "synthetic": true,
+          "category": "important_alerts",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "title": {
+            "en": "Known medicine allergy on file",
+            "sw": "Aleji ya dawa inayojulikana imeandikwa"
+          },
+          "detail": {
+            "en": "See the allergies section for details.",
+            "sw": "Angalia sehemu ya aleji kwa maelezo."
+          }
+        },
+        {
+          "id": "rec-passport-mp-2",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-21T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "medicationName": "Paracetamol 500 mg",
+          "clinicianInstructions": {
+            "en": "Take one 500 mg paracetamol tablet in the morning and one in the evening after food.",
+            "sw": "Meza kidonge kimoja cha paracetamol 500 mg asubuhi na kimoja jioni baada ya chakula."
+          },
+          "status": "active",
+          "statusRecordedBy": "clinician-1"
+        },
+        {
+          "id": "rec-passport-mp-3",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-22T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-mp-a",
+          "medicationName": "Paracetamol 500 mg",
+          "status": "stopped"
+        },
+        {
+          "id": "rec-passport-mp-4",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-23T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-2",
+          "medicationName": "Multivitamin (synthetic example)",
+          "status": "completed",
+          "statusRecordedBy": "clinician-2"
+        },
+        {
+          "id": "rec-passport-mp-5",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-24T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "sourceRecordIdentifier": "import-passport-mp-b",
+          "medicationName": "Unlabelled imported medicine (synthetic example)",
+          "status": "unknown"
+        },
+        {
+          "id": "rec-passport-mp-6",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-25T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "disputed",
+          "sourcePractitionerId": "clinician-1",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Skin rash recorded at a previous visit.",
+            "sw": "Vipele vya ngozi vilirekodiwa kwenye ziara iliyopita."
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-mp-7",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-26T10:00:00.000Z",
+          "synthetic": true,
+          "category": "conditions",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "conditionName": {
+            "en": "Clinician-recorded follow-up condition (synthetic)",
+            "sw": "Hali iliyorekodiwa na tabibu kwa ufuatiliaji (ya mfano)"
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-mp-8",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-27T10:00:00.000Z",
+          "synthetic": true,
+          "category": "encounters",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-mp-enc",
+          "encounterType": {
+            "en": "Outpatient visit (imported, synthetic)",
+            "sw": "Ziara ya wagonjwa wa nje (imeingizwa, ya mfano)"
+          },
+          "facilityName": "Tumaini Demo Dispensary (Synthetic)"
+        },
+        {
+          "id": "rec-passport-mp-9",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-28T10:00:00.000Z",
+          "synthetic": true,
+          "category": "clinician_advice",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "advice": {
+            "en": "SAMPLE TEXT: Return to the clinic for review in 14 days, or earlier if you feel worse.",
+            "sw": "MAANDISHI YA MFANO: Rudi kliniki kwa ukaguzi baada ya siku 14, au mapema zaidi ukijisikia vibaya."
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-mp-10",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-29T10:00:00.000Z",
+          "synthetic": true,
+          "category": "care_plans",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "planName": {
+            "en": "Minor procedure recovery (demo)",
+            "sw": "Kupona baada ya upasuaji mdogo (mfano)"
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-mp-11",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-30T10:00:00.000Z",
+          "synthetic": true,
+          "category": "observations",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "observationName": {
+            "en": "Blood pressure (value not available from source)",
+            "sw": "Shinikizo la damu (thamani haipatikani kutoka chanzo)"
+          }
+        },
+        {
+          "id": "rec-passport-mp-12",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-31T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "patient_reported",
+          "verificationStatus": "disputed",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Patient reports the reaction was swelling, not a rash.",
+            "sw": "Mgonjwa anasema athari ilikuwa uvimbe, si vipele."
+          },
+          "clinicalStatus": "active",
+          "disputesRecordId": "rec-passport-mp-6"
+        },
+        {
+          "id": "rec-passport-mp-13",
+          "patientId": "patient-pp-01",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-08-01T10:00:00.000Z",
+          "synthetic": true,
+          "category": "documents",
+          "sourceType": "ai_organized",
+          "verificationStatus": "unverified",
+          "title": {
+            "en": "Continuity summary (AI-assisted organization, not a diagnosis or complete medical record)",
+            "sw": "Muhtasari wa mwendelezo (mpangilio uliosaidiwa na AI, si utambuzi wala kumbukumbu kamili ya matibabu)"
+          },
+          "documentType": "ai_organized_summary"
+        }
+      ],
+      "provenance": [
+        {
+          "id": "prov-rec-passport-mp-1",
+          "recordId": "rec-passport-mp-1",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-20T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-2",
+          "recordId": "rec-passport-mp-2",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-21T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-3",
+          "recordId": "rec-passport-mp-3",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-22T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-4",
+          "recordId": "rec-passport-mp-4",
+          "actorId": "clinician-2",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-23T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-5",
+          "recordId": "rec-passport-mp-5",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-24T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-6",
+          "recordId": "rec-passport-mp-6",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-25T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-7",
+          "recordId": "rec-passport-mp-7",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-26T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-8",
+          "recordId": "rec-passport-mp-8",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-27T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-9",
+          "recordId": "rec-passport-mp-9",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-28T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-10",
+          "recordId": "rec-passport-mp-10",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-29T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-11",
+          "recordId": "rec-passport-mp-11",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-30T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-12",
+          "recordId": "rec-passport-mp-12",
+          "actorId": "patient-pp-01",
+          "activity": "corrected",
+          "occurredAt": "2026-07-31T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-mp-13",
+          "recordId": "rec-passport-mp-13",
+          "actorId": "agent-post-care",
+          "activity": "created",
+          "occurredAt": "2026-08-01T10:00:00.000Z"
+        }
+      ],
+      "snapshot": {
+        "id": "snap-passport-mp",
+        "patientId": "patient-pp-01",
+        "generatedAt": "2026-08-24T07:00:00.000Z",
+        "recordIds": [
+          "rec-passport-mp-1",
+          "rec-passport-mp-2",
+          "rec-passport-mp-3",
+          "rec-passport-mp-4",
+          "rec-passport-mp-5",
+          "rec-passport-mp-6",
+          "rec-passport-mp-7",
+          "rec-passport-mp-8",
+          "rec-passport-mp-9",
+          "rec-passport-mp-10",
+          "rec-passport-mp-11",
+          "rec-passport-mp-12",
+          "rec-passport-mp-13"
+        ],
+        "missingInformationWarnings": [
+          {
+            "en": "This passport may not include every diagnosis, prescription, test, visit, or instruction.",
+            "sw": "Pasipoti hii huenda haijumuishi kila utambuzi, dawa, kipimo, ziara, au maelekezo."
+          },
+          {
+            "en": "One imported blood-pressure reading has no value: not available from the source.",
+            "sw": "Kipimo kimoja cha shinikizo la damu kilichoingizwa hakina thamani: haipatikani kutoka chanzo."
+          }
+        ],
+        "conflictRecordGroups": [
+          [
+            "rec-passport-mp-2",
+            "rec-passport-mp-3"
+          ]
+        ],
+        "sourceRevision": 1
+      },
+      "shareGrants": [
+        {
+          "id": "grant-passport-mp-active",
+          "patientId": "patient-pp-01",
+          "tokenHash": "33c6b26e8b0b4fc794a52dad6af91d8ecf7c4c5070adce0e37efe52e8f73c1b8",
+          "categories": [
+            "medications",
+            "allergies",
+            "encounters",
+            "clinician_advice"
+          ],
+          "purpose": "Referral visit at another facility (synthetic demo)",
+          "startsAt": "2026-08-24T08:00:00.000Z",
+          "expiresAt": "2026-09-27T08:30:00.000Z",
+          "maxUses": 3,
+          "useCount": 1,
+          "createdAt": "2026-08-24T08:00:00.000Z",
+          "confirmedAt": "2026-08-24T08:00:00.000Z"
+        }
+      ],
+      "accessEvents": [
+        {
+          "id": "access-passport-mp-1",
+          "shareGrantId": "grant-passport-mp-active",
+          "recipientClinicianId": "clinician-2",
+          "recipientOrganizationId": "facility-demo-2",
+          "declaredPurpose": "Referral visit (synthetic demo)",
+          "categoriesViewed": [
+            "medications",
+            "allergies"
+          ],
+          "outcome": "allowed",
+          "occurredAt": "2026-08-24T08:10:00.000Z"
+        },
+        {
+          "id": "access-passport-mp-2",
+          "shareGrantId": "grant-passport-mp-active",
+          "categoriesViewed": [],
+          "outcome": "denied",
+          "occurredAt": "2026-08-25T10:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "passport-ab",
+      "synthetic": true,
+      "journeyType": "antibiotic_course",
+      "patient": {
+        "id": "patient-pp-02",
+        "homeClinicId": "clinic-demo-1",
+        "synthetic": true,
+        "preferredName": "Synthetic Passport Patient 2",
+        "timezone": "Africa/Dar_es_Salaam"
+      },
+      "records": [
+        {
+          "id": "rec-passport-ab-1",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-20T10:00:00.000Z",
+          "synthetic": true,
+          "category": "important_alerts",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "title": {
+            "en": "Known medicine allergy on file",
+            "sw": "Aleji ya dawa inayojulikana imeandikwa"
+          },
+          "detail": {
+            "en": "See the allergies section for details.",
+            "sw": "Angalia sehemu ya aleji kwa maelezo."
+          }
+        },
+        {
+          "id": "rec-passport-ab-2",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-21T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "medicationName": "Amoxicillin 500 mg",
+          "clinicianInstructions": {
+            "en": "Take one amoxicillin 500 mg capsule in the morning and one in the evening until finished.",
+            "sw": "Meza kidonge kimoja cha amoxicillin 500 mg asubuhi na kimoja jioni hadi dawa iishe."
+          },
+          "status": "active",
+          "statusRecordedBy": "clinician-1"
+        },
+        {
+          "id": "rec-passport-ab-3",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-22T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-ab-a",
+          "medicationName": "Amoxicillin 500 mg",
+          "status": "stopped"
+        },
+        {
+          "id": "rec-passport-ab-4",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-23T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-2",
+          "medicationName": "Multivitamin (synthetic example)",
+          "status": "completed",
+          "statusRecordedBy": "clinician-2"
+        },
+        {
+          "id": "rec-passport-ab-5",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-24T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "sourceRecordIdentifier": "import-passport-ab-b",
+          "medicationName": "Unlabelled imported medicine (synthetic example)",
+          "status": "unknown"
+        },
+        {
+          "id": "rec-passport-ab-6",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-25T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "disputed",
+          "sourcePractitionerId": "clinician-1",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Skin rash recorded at a previous visit.",
+            "sw": "Vipele vya ngozi vilirekodiwa kwenye ziara iliyopita."
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-ab-7",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-26T10:00:00.000Z",
+          "synthetic": true,
+          "category": "conditions",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "conditionName": {
+            "en": "Clinician-recorded follow-up condition (synthetic)",
+            "sw": "Hali iliyorekodiwa na tabibu kwa ufuatiliaji (ya mfano)"
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-ab-8",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-27T10:00:00.000Z",
+          "synthetic": true,
+          "category": "encounters",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-ab-enc",
+          "encounterType": {
+            "en": "Outpatient visit (imported, synthetic)",
+            "sw": "Ziara ya wagonjwa wa nje (imeingizwa, ya mfano)"
+          },
+          "facilityName": "Tumaini Demo Dispensary (Synthetic)"
+        },
+        {
+          "id": "rec-passport-ab-9",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-28T10:00:00.000Z",
+          "synthetic": true,
+          "category": "clinician_advice",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "advice": {
+            "en": "SAMPLE TEXT: Return to the clinic for review in 14 days, or earlier if you feel worse.",
+            "sw": "MAANDISHI YA MFANO: Rudi kliniki kwa ukaguzi baada ya siku 14, au mapema zaidi ukijisikia vibaya."
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-ab-10",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-29T10:00:00.000Z",
+          "synthetic": true,
+          "category": "care_plans",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "planName": {
+            "en": "Short antibiotic treatment (demo)",
+            "sw": "Matibabu mafupi ya antibiotiki (mfano)"
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-ab-11",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-30T10:00:00.000Z",
+          "synthetic": true,
+          "category": "observations",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "observationName": {
+            "en": "Blood pressure (value not available from source)",
+            "sw": "Shinikizo la damu (thamani haipatikani kutoka chanzo)"
+          }
+        },
+        {
+          "id": "rec-passport-ab-12",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-31T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "patient_reported",
+          "verificationStatus": "disputed",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Patient reports the reaction was swelling, not a rash.",
+            "sw": "Mgonjwa anasema athari ilikuwa uvimbe, si vipele."
+          },
+          "clinicalStatus": "active",
+          "disputesRecordId": "rec-passport-ab-6"
+        },
+        {
+          "id": "rec-passport-ab-13",
+          "patientId": "patient-pp-02",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-08-01T10:00:00.000Z",
+          "synthetic": true,
+          "category": "documents",
+          "sourceType": "ai_organized",
+          "verificationStatus": "unverified",
+          "title": {
+            "en": "Continuity summary (AI-assisted organization, not a diagnosis or complete medical record)",
+            "sw": "Muhtasari wa mwendelezo (mpangilio uliosaidiwa na AI, si utambuzi wala kumbukumbu kamili ya matibabu)"
+          },
+          "documentType": "ai_organized_summary"
+        }
+      ],
+      "provenance": [
+        {
+          "id": "prov-rec-passport-ab-1",
+          "recordId": "rec-passport-ab-1",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-20T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-2",
+          "recordId": "rec-passport-ab-2",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-21T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-3",
+          "recordId": "rec-passport-ab-3",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-22T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-4",
+          "recordId": "rec-passport-ab-4",
+          "actorId": "clinician-2",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-23T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-5",
+          "recordId": "rec-passport-ab-5",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-24T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-6",
+          "recordId": "rec-passport-ab-6",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-25T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-7",
+          "recordId": "rec-passport-ab-7",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-26T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-8",
+          "recordId": "rec-passport-ab-8",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-27T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-9",
+          "recordId": "rec-passport-ab-9",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-28T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-10",
+          "recordId": "rec-passport-ab-10",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-29T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-11",
+          "recordId": "rec-passport-ab-11",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-30T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-12",
+          "recordId": "rec-passport-ab-12",
+          "actorId": "patient-pp-02",
+          "activity": "corrected",
+          "occurredAt": "2026-07-31T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ab-13",
+          "recordId": "rec-passport-ab-13",
+          "actorId": "agent-post-care",
+          "activity": "created",
+          "occurredAt": "2026-08-01T10:00:00.000Z"
+        }
+      ],
+      "snapshot": {
+        "id": "snap-passport-ab",
+        "patientId": "patient-pp-02",
+        "generatedAt": "2026-08-24T07:00:00.000Z",
+        "recordIds": [
+          "rec-passport-ab-1",
+          "rec-passport-ab-2",
+          "rec-passport-ab-3",
+          "rec-passport-ab-4",
+          "rec-passport-ab-5",
+          "rec-passport-ab-6",
+          "rec-passport-ab-7",
+          "rec-passport-ab-8",
+          "rec-passport-ab-9",
+          "rec-passport-ab-10",
+          "rec-passport-ab-11",
+          "rec-passport-ab-12",
+          "rec-passport-ab-13"
+        ],
+        "missingInformationWarnings": [
+          {
+            "en": "This passport may not include every diagnosis, prescription, test, visit, or instruction.",
+            "sw": "Pasipoti hii huenda haijumuishi kila utambuzi, dawa, kipimo, ziara, au maelekezo."
+          },
+          {
+            "en": "One imported blood-pressure reading has no value: not available from the source.",
+            "sw": "Kipimo kimoja cha shinikizo la damu kilichoingizwa hakina thamani: haipatikani kutoka chanzo."
+          }
+        ],
+        "conflictRecordGroups": [
+          [
+            "rec-passport-ab-2",
+            "rec-passport-ab-3"
+          ]
+        ],
+        "sourceRevision": 1
+      },
+      "shareGrants": [
+        {
+          "id": "grant-passport-ab-expired",
+          "patientId": "patient-pp-02",
+          "tokenHash": "2af55ed2485e8cd1a3ab22231bf1a8c27bc2a7493897e1ee78c7250aa7aeff99",
+          "categories": [
+            "medications",
+            "allergies",
+            "encounters",
+            "clinician_advice"
+          ],
+          "purpose": "Referral visit at another facility (synthetic demo)",
+          "startsAt": "2026-08-15T08:00:00.000Z",
+          "expiresAt": "2026-08-15T08:30:00.000Z",
+          "maxUses": 1,
+          "useCount": 1,
+          "createdAt": "2026-08-15T08:00:00.000Z",
+          "confirmedAt": "2026-08-15T08:00:00.000Z"
+        }
+      ],
+      "accessEvents": [
+        {
+          "id": "access-passport-ab-1",
+          "shareGrantId": "grant-passport-ab-expired",
+          "recipientClinicianId": "clinician-2",
+          "recipientOrganizationId": "facility-demo-2",
+          "declaredPurpose": "Referral visit (synthetic demo)",
+          "categoriesViewed": [
+            "medications",
+            "allergies"
+          ],
+          "outcome": "allowed",
+          "occurredAt": "2026-08-24T08:10:00.000Z"
+        },
+        {
+          "id": "access-passport-ab-2",
+          "shareGrantId": "grant-passport-ab-expired",
+          "categoriesViewed": [],
+          "outcome": "expired",
+          "occurredAt": "2026-08-25T10:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "passport-ht",
+      "synthetic": true,
+      "journeyType": "hypertension_medication",
+      "patient": {
+        "id": "patient-pp-03",
+        "homeClinicId": "clinic-demo-1",
+        "synthetic": true,
+        "preferredName": "Synthetic Passport Patient 3",
+        "timezone": "Africa/Dar_es_Salaam"
+      },
+      "records": [
+        {
+          "id": "rec-passport-ht-1",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-20T10:00:00.000Z",
+          "synthetic": true,
+          "category": "important_alerts",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "title": {
+            "en": "Known medicine allergy on file",
+            "sw": "Aleji ya dawa inayojulikana imeandikwa"
+          },
+          "detail": {
+            "en": "See the allergies section for details.",
+            "sw": "Angalia sehemu ya aleji kwa maelezo."
+          }
+        },
+        {
+          "id": "rec-passport-ht-2",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-21T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "medicationName": "Amlodipine 5 mg",
+          "clinicianInstructions": {
+            "en": "Take one amlodipine 5 mg tablet every morning.",
+            "sw": "Meza kidonge kimoja cha amlodipine 5 mg kila asubuhi."
+          },
+          "status": "active",
+          "statusRecordedBy": "clinician-1"
+        },
+        {
+          "id": "rec-passport-ht-3",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-22T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-ht-a",
+          "medicationName": "Amlodipine 5 mg",
+          "status": "stopped"
+        },
+        {
+          "id": "rec-passport-ht-4",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-23T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-2",
+          "medicationName": "Multivitamin (synthetic example)",
+          "status": "completed",
+          "statusRecordedBy": "clinician-2"
+        },
+        {
+          "id": "rec-passport-ht-5",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-24T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "sourceRecordIdentifier": "import-passport-ht-b",
+          "medicationName": "Unlabelled imported medicine (synthetic example)",
+          "status": "unknown"
+        },
+        {
+          "id": "rec-passport-ht-6",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-25T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "disputed",
+          "sourcePractitionerId": "clinician-1",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Skin rash recorded at a previous visit.",
+            "sw": "Vipele vya ngozi vilirekodiwa kwenye ziara iliyopita."
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-ht-7",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-26T10:00:00.000Z",
+          "synthetic": true,
+          "category": "conditions",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "conditionName": {
+            "en": "Clinician-recorded follow-up condition (synthetic)",
+            "sw": "Hali iliyorekodiwa na tabibu kwa ufuatiliaji (ya mfano)"
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-ht-8",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-27T10:00:00.000Z",
+          "synthetic": true,
+          "category": "encounters",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-ht-enc",
+          "encounterType": {
+            "en": "Outpatient visit (imported, synthetic)",
+            "sw": "Ziara ya wagonjwa wa nje (imeingizwa, ya mfano)"
+          },
+          "facilityName": "Tumaini Demo Dispensary (Synthetic)"
+        },
+        {
+          "id": "rec-passport-ht-9",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-28T10:00:00.000Z",
+          "synthetic": true,
+          "category": "clinician_advice",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "advice": {
+            "en": "SAMPLE TEXT: Return to the clinic for review in 14 days, or earlier if you feel worse.",
+            "sw": "MAANDISHI YA MFANO: Rudi kliniki kwa ukaguzi baada ya siku 14, au mapema zaidi ukijisikia vibaya."
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-ht-10",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-29T10:00:00.000Z",
+          "synthetic": true,
+          "category": "care_plans",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "planName": {
+            "en": "Hypertension medication follow-up (demo)",
+            "sw": "Ufuatiliaji wa dawa za shinikizo la damu (mfano)"
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-ht-11",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-30T10:00:00.000Z",
+          "synthetic": true,
+          "category": "observations",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "observationName": {
+            "en": "Blood pressure (value not available from source)",
+            "sw": "Shinikizo la damu (thamani haipatikani kutoka chanzo)"
+          }
+        },
+        {
+          "id": "rec-passport-ht-12",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-31T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "patient_reported",
+          "verificationStatus": "disputed",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Patient reports the reaction was swelling, not a rash.",
+            "sw": "Mgonjwa anasema athari ilikuwa uvimbe, si vipele."
+          },
+          "clinicalStatus": "active",
+          "disputesRecordId": "rec-passport-ht-6"
+        },
+        {
+          "id": "rec-passport-ht-13",
+          "patientId": "patient-pp-03",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-08-01T10:00:00.000Z",
+          "synthetic": true,
+          "category": "documents",
+          "sourceType": "ai_organized",
+          "verificationStatus": "unverified",
+          "title": {
+            "en": "Continuity summary (AI-assisted organization, not a diagnosis or complete medical record)",
+            "sw": "Muhtasari wa mwendelezo (mpangilio uliosaidiwa na AI, si utambuzi wala kumbukumbu kamili ya matibabu)"
+          },
+          "documentType": "ai_organized_summary"
+        }
+      ],
+      "provenance": [
+        {
+          "id": "prov-rec-passport-ht-1",
+          "recordId": "rec-passport-ht-1",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-20T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-2",
+          "recordId": "rec-passport-ht-2",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-21T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-3",
+          "recordId": "rec-passport-ht-3",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-22T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-4",
+          "recordId": "rec-passport-ht-4",
+          "actorId": "clinician-2",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-23T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-5",
+          "recordId": "rec-passport-ht-5",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-24T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-6",
+          "recordId": "rec-passport-ht-6",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-25T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-7",
+          "recordId": "rec-passport-ht-7",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-26T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-8",
+          "recordId": "rec-passport-ht-8",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-27T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-9",
+          "recordId": "rec-passport-ht-9",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-28T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-10",
+          "recordId": "rec-passport-ht-10",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-29T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-11",
+          "recordId": "rec-passport-ht-11",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-30T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-12",
+          "recordId": "rec-passport-ht-12",
+          "actorId": "patient-pp-03",
+          "activity": "corrected",
+          "occurredAt": "2026-07-31T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-ht-13",
+          "recordId": "rec-passport-ht-13",
+          "actorId": "agent-post-care",
+          "activity": "created",
+          "occurredAt": "2026-08-01T10:00:00.000Z"
+        }
+      ],
+      "snapshot": {
+        "id": "snap-passport-ht",
+        "patientId": "patient-pp-03",
+        "generatedAt": "2026-08-24T07:00:00.000Z",
+        "recordIds": [
+          "rec-passport-ht-1",
+          "rec-passport-ht-2",
+          "rec-passport-ht-3",
+          "rec-passport-ht-4",
+          "rec-passport-ht-5",
+          "rec-passport-ht-6",
+          "rec-passport-ht-7",
+          "rec-passport-ht-8",
+          "rec-passport-ht-9",
+          "rec-passport-ht-10",
+          "rec-passport-ht-11",
+          "rec-passport-ht-12",
+          "rec-passport-ht-13"
+        ],
+        "missingInformationWarnings": [
+          {
+            "en": "This passport may not include every diagnosis, prescription, test, visit, or instruction.",
+            "sw": "Pasipoti hii huenda haijumuishi kila utambuzi, dawa, kipimo, ziara, au maelekezo."
+          },
+          {
+            "en": "One imported blood-pressure reading has no value: not available from the source.",
+            "sw": "Kipimo kimoja cha shinikizo la damu kilichoingizwa hakina thamani: haipatikani kutoka chanzo."
+          }
+        ],
+        "conflictRecordGroups": [
+          [
+            "rec-passport-ht-2",
+            "rec-passport-ht-3"
+          ]
+        ],
+        "sourceRevision": 1
+      },
+      "shareGrants": [
+        {
+          "id": "grant-passport-ht-revoked",
+          "patientId": "patient-pp-03",
+          "tokenHash": "fef57f4a6dc720aa48ec116d2fb9163e3935cf4d8501434f5498a79e6e6c48fb",
+          "categories": [
+            "medications",
+            "allergies",
+            "encounters",
+            "clinician_advice"
+          ],
+          "purpose": "Referral visit at another facility (synthetic demo)",
+          "startsAt": "2026-08-23T08:00:00.000Z",
+          "expiresAt": "2026-09-27T08:30:00.000Z",
+          "maxUses": 1,
+          "useCount": 0,
+          "createdAt": "2026-08-23T08:00:00.000Z",
+          "confirmedAt": "2026-08-23T08:00:00.000Z",
+          "revokedAt": "2026-08-23T09:00:00.000Z"
+        }
+      ],
+      "accessEvents": [
+        {
+          "id": "access-passport-ht-1",
+          "shareGrantId": "grant-passport-ht-revoked",
+          "recipientClinicianId": "clinician-2",
+          "recipientOrganizationId": "facility-demo-2",
+          "declaredPurpose": "Referral visit (synthetic demo)",
+          "categoriesViewed": [],
+          "outcome": "revoked",
+          "occurredAt": "2026-08-24T08:10:00.000Z"
+        },
+        {
+          "id": "access-passport-ht-2",
+          "shareGrantId": "grant-passport-ht-revoked",
+          "categoriesViewed": [],
+          "outcome": "revoked",
+          "occurredAt": "2026-08-25T10:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "passport-db",
+      "synthetic": true,
+      "journeyType": "diabetes_medication",
+      "patient": {
+        "id": "patient-pp-04",
+        "homeClinicId": "clinic-demo-1",
+        "synthetic": true,
+        "preferredName": "Synthetic Passport Patient 4",
+        "timezone": "Africa/Dar_es_Salaam"
+      },
+      "records": [
+        {
+          "id": "rec-passport-db-1",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-20T10:00:00.000Z",
+          "synthetic": true,
+          "category": "important_alerts",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "title": {
+            "en": "Known medicine allergy on file",
+            "sw": "Aleji ya dawa inayojulikana imeandikwa"
+          },
+          "detail": {
+            "en": "See the allergies section for details.",
+            "sw": "Angalia sehemu ya aleji kwa maelezo."
+          }
+        },
+        {
+          "id": "rec-passport-db-2",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-21T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "medicationName": "Metformin 500 mg",
+          "clinicianInstructions": {
+            "en": "Take one metformin 500 mg tablet with breakfast and one with dinner.",
+            "sw": "Meza kidonge kimoja cha metformin 500 mg na chakula cha asubuhi na kimoja na chakula cha jioni."
+          },
+          "status": "active",
+          "statusRecordedBy": "clinician-1"
+        },
+        {
+          "id": "rec-passport-db-3",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-22T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-db-a",
+          "medicationName": "Metformin 500 mg",
+          "status": "stopped"
+        },
+        {
+          "id": "rec-passport-db-4",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-23T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-2",
+          "medicationName": "Multivitamin (synthetic example)",
+          "status": "completed",
+          "statusRecordedBy": "clinician-2"
+        },
+        {
+          "id": "rec-passport-db-5",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-24T10:00:00.000Z",
+          "synthetic": true,
+          "category": "medications",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "sourceRecordIdentifier": "import-passport-db-b",
+          "medicationName": "Unlabelled imported medicine (synthetic example)",
+          "status": "unknown"
+        },
+        {
+          "id": "rec-passport-db-6",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-25T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "disputed",
+          "sourcePractitionerId": "clinician-1",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Skin rash recorded at a previous visit.",
+            "sw": "Vipele vya ngozi vilirekodiwa kwenye ziara iliyopita."
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-db-7",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-26T10:00:00.000Z",
+          "synthetic": true,
+          "category": "conditions",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "conditionName": {
+            "en": "Clinician-recorded follow-up condition (synthetic)",
+            "sw": "Hali iliyorekodiwa na tabibu kwa ufuatiliaji (ya mfano)"
+          },
+          "clinicalStatus": "active"
+        },
+        {
+          "id": "rec-passport-db-8",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-27T10:00:00.000Z",
+          "synthetic": true,
+          "category": "encounters",
+          "sourceType": "facility_imported",
+          "verificationStatus": "pending",
+          "sourceRecordIdentifier": "import-passport-db-enc",
+          "encounterType": {
+            "en": "Outpatient visit (imported, synthetic)",
+            "sw": "Ziara ya wagonjwa wa nje (imeingizwa, ya mfano)"
+          },
+          "facilityName": "Tumaini Demo Dispensary (Synthetic)"
+        },
+        {
+          "id": "rec-passport-db-9",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-28T10:00:00.000Z",
+          "synthetic": true,
+          "category": "clinician_advice",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "advice": {
+            "en": "SAMPLE TEXT: Return to the clinic for review in 14 days, or earlier if you feel worse.",
+            "sw": "MAANDISHI YA MFANO: Rudi kliniki kwa ukaguzi baada ya siku 14, au mapema zaidi ukijisikia vibaya."
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-db-10",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-29T10:00:00.000Z",
+          "synthetic": true,
+          "category": "care_plans",
+          "sourceType": "clinician_verified",
+          "verificationStatus": "verified",
+          "sourcePractitionerId": "clinician-1",
+          "planName": {
+            "en": "Diabetes medication follow-up (demo)",
+            "sw": "Ufuatiliaji wa dawa za kisukari (mfano)"
+          },
+          "status": "active"
+        },
+        {
+          "id": "rec-passport-db-11",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "facility-demo-2",
+          "recordedAt": "2026-07-30T10:00:00.000Z",
+          "synthetic": true,
+          "category": "observations",
+          "sourceType": "facility_imported",
+          "verificationStatus": "unverified",
+          "observationName": {
+            "en": "Blood pressure (value not available from source)",
+            "sw": "Shinikizo la damu (thamani haipatikani kutoka chanzo)"
+          }
+        },
+        {
+          "id": "rec-passport-db-12",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-07-31T10:00:00.000Z",
+          "synthetic": true,
+          "category": "allergies",
+          "sourceType": "patient_reported",
+          "verificationStatus": "disputed",
+          "substance": "Penicillin (synthetic example)",
+          "reaction": {
+            "en": "Patient reports the reaction was swelling, not a rash.",
+            "sw": "Mgonjwa anasema athari ilikuwa uvimbe, si vipele."
+          },
+          "clinicalStatus": "active",
+          "disputesRecordId": "rec-passport-db-6"
+        },
+        {
+          "id": "rec-passport-db-13",
+          "patientId": "patient-pp-04",
+          "sourceOrganizationId": "clinic-demo-1",
+          "recordedAt": "2026-08-01T10:00:00.000Z",
+          "synthetic": true,
+          "category": "documents",
+          "sourceType": "ai_organized",
+          "verificationStatus": "unverified",
+          "title": {
+            "en": "Continuity summary (AI-assisted organization, not a diagnosis or complete medical record)",
+            "sw": "Muhtasari wa mwendelezo (mpangilio uliosaidiwa na AI, si utambuzi wala kumbukumbu kamili ya matibabu)"
+          },
+          "documentType": "ai_organized_summary"
+        }
+      ],
+      "provenance": [
+        {
+          "id": "prov-rec-passport-db-1",
+          "recordId": "rec-passport-db-1",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-20T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-2",
+          "recordId": "rec-passport-db-2",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-21T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-3",
+          "recordId": "rec-passport-db-3",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-22T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-4",
+          "recordId": "rec-passport-db-4",
+          "actorId": "clinician-2",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-23T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-5",
+          "recordId": "rec-passport-db-5",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-24T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-6",
+          "recordId": "rec-passport-db-6",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-25T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-7",
+          "recordId": "rec-passport-db-7",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-26T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-8",
+          "recordId": "rec-passport-db-8",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-27T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-9",
+          "recordId": "rec-passport-db-9",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-28T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-10",
+          "recordId": "rec-passport-db-10",
+          "actorId": "clinician-1",
+          "organizationId": "clinic-demo-1",
+          "activity": "verified",
+          "occurredAt": "2026-07-29T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-11",
+          "recordId": "rec-passport-db-11",
+          "organizationId": "facility-demo-2",
+          "activity": "imported",
+          "occurredAt": "2026-07-30T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-12",
+          "recordId": "rec-passport-db-12",
+          "actorId": "patient-pp-04",
+          "activity": "corrected",
+          "occurredAt": "2026-07-31T10:00:00.000Z"
+        },
+        {
+          "id": "prov-rec-passport-db-13",
+          "recordId": "rec-passport-db-13",
+          "actorId": "agent-post-care",
+          "activity": "created",
+          "occurredAt": "2026-08-01T10:00:00.000Z"
+        }
+      ],
+      "snapshot": {
+        "id": "snap-passport-db",
+        "patientId": "patient-pp-04",
+        "generatedAt": "2026-08-24T07:00:00.000Z",
+        "recordIds": [
+          "rec-passport-db-1",
+          "rec-passport-db-2",
+          "rec-passport-db-3",
+          "rec-passport-db-4",
+          "rec-passport-db-5",
+          "rec-passport-db-6",
+          "rec-passport-db-7",
+          "rec-passport-db-8",
+          "rec-passport-db-9",
+          "rec-passport-db-10",
+          "rec-passport-db-11",
+          "rec-passport-db-12",
+          "rec-passport-db-13"
+        ],
+        "missingInformationWarnings": [
+          {
+            "en": "This passport may not include every diagnosis, prescription, test, visit, or instruction.",
+            "sw": "Pasipoti hii huenda haijumuishi kila utambuzi, dawa, kipimo, ziara, au maelekezo."
+          },
+          {
+            "en": "One imported blood-pressure reading has no value: not available from the source.",
+            "sw": "Kipimo kimoja cha shinikizo la damu kilichoingizwa hakina thamani: haipatikani kutoka chanzo."
+          }
+        ],
+        "conflictRecordGroups": [
+          [
+            "rec-passport-db-2",
+            "rec-passport-db-3"
+          ]
+        ],
+        "sourceRevision": 1
+      },
+      "shareGrants": [
+        {
+          "id": "grant-passport-db-overuse",
+          "patientId": "patient-pp-04",
+          "tokenHash": "dc34845d16bfbcafe48e7ea0535dcc7ddbd1868e17eb8f3ae13acad0e577693b",
+          "categories": [
+            "medications",
+            "allergies",
+            "encounters",
+            "clinician_advice"
+          ],
+          "purpose": "Referral visit at another facility (synthetic demo)",
+          "startsAt": "2026-08-23T08:00:00.000Z",
+          "expiresAt": "2026-09-27T08:30:00.000Z",
+          "maxUses": 1,
+          "useCount": 1,
+          "createdAt": "2026-08-23T08:00:00.000Z",
+          "confirmedAt": "2026-08-23T08:00:00.000Z"
+        }
+      ],
+      "accessEvents": [
+        {
+          "id": "access-passport-db-1",
+          "shareGrantId": "grant-passport-db-overuse",
+          "recipientClinicianId": "clinician-2",
+          "recipientOrganizationId": "facility-demo-2",
+          "declaredPurpose": "Referral visit (synthetic demo)",
+          "categoriesViewed": [
+            "medications",
+            "allergies"
+          ],
+          "outcome": "allowed",
+          "occurredAt": "2026-08-24T08:10:00.000Z"
+        },
+        {
+          "id": "access-passport-db-2",
+          "shareGrantId": "grant-passport-db-overuse",
+          "categoriesViewed": [],
+          "outcome": "over_use_limit",
+          "occurredAt": "2026-08-25T10:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}
