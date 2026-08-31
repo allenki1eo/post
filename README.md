@@ -30,6 +30,17 @@ npm run web        # web directly
 Environment flags: copy `.env.example` (names only, no secrets ever in
 `EXPO_PUBLIC_` variables).
 
+### SMS reminders (Swala)
+
+Swala delivery is a trusted-backend integration; its bearer key must never be
+embedded in the Expo bundle. Configure `SWALA_SMS_API_KEY`,
+`SWALA_SMS_SENDER_ID`, and (optionally) `SWALA_SMS_BASE_URL` on the reminder
+worker. After verifying the recipient and recording explicit SMS consent, the
+worker can call `sendSwalaSms` with neutral approved copy and a stable
+idempotency key. The adapter uses Swala's `POST /sms/quick-message` endpoint.
+Rotate any credential that has been pasted into chat, source control, or logs
+before use.
+
 ## Quality gates
 
 ```bash

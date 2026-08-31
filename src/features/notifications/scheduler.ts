@@ -28,6 +28,7 @@ export async function loadNotificationPreferences(): Promise<NotificationPrefere
     return {
       enabled: parsed.enabled ?? DEFAULT_NOTIFICATION_PREFERENCES.enabled,
       showPreviews: parsed.showPreviews ?? DEFAULT_NOTIFICATION_PREFERENCES.showPreviews,
+      smsEnabled: parsed.smsEnabled ?? DEFAULT_NOTIFICATION_PREFERENCES.smsEnabled,
     };
   } catch {
     return DEFAULT_NOTIFICATION_PREFERENCES;

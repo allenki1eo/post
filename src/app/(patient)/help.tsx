@@ -1,7 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { Linking, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { AppText } from '../../components/primitives/AppText';
+import { Button } from '../../components/primitives/Button';
 import { Screen } from '../../components/primitives/Screen';
 import { SectionHeading } from '../../components/primitives/SectionHeading';
 import type { SupportedLanguage } from '../../domain/models';
@@ -13,6 +14,7 @@ import { useAsyncData } from '../../utils/useAsyncData';
 export default function Help() {
   const { t, i18n } = useTranslation();
   const language = (i18n.language === 'sw' ? 'sw' : 'en') as SupportedLanguage;
+  const agentFreeAiUrl = process.env.EXPO_PUBLIC_AGENT_FREE_AI_URL;
 
   const { data } = useAsyncData(async () => {
     const repository = getRepository();
@@ -49,6 +51,20 @@ export default function Help() {
         {t('help.privacyBody')}
       </AppText>
 
+      {agentFreeAiUrl ? (
+        <>
+          <SectionHeading label={t('help.aiAssistantTitle')} />
+          <AppText variant="secondary" muted style={styles.aiDescription}>
+            {t('help.aiAssistantBody')}
+          </AppText>
+          <Button
+            kind="secondary"
+            label={t('help.openAiAssistant')}
+            onPress={() => Linking.openURL(agentFreeAiUrl)}
+          />
+        </>
+      ) : null}
+
       <AppText variant="secondary" muted style={styles.disclaimer}>
         {t('safety.patientDisclaimer')}
       </AppText>
@@ -60,4 +76,5 @@ const styles = StyleSheet.create({
   disclaimer: {
     marginTop: spacing.xxl,
   },
+  aiDescription: { marginBottom: spacing.md },
 });
