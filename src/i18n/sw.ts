@@ -165,6 +165,10 @@ export const sw: MessageBundle = {
     privacyTitle: 'Faragha yako',
     privacyBody:
       'Taarifa zako zinatumika kwa ajili ya ufuatiliaji wa huduma yako tu. Wewe ndiye unayechagua cha kushiriki na unaweza kusitisha ushirikiaji wakati wowote.',
+    aiAssistantTitle: 'Msaidizi wa hiari wa AI',
+    aiAssistantBody:
+      'Msaidizi huyu wa nje ni kwa taarifa za jumla tu. Usishiriki taarifa binafsi za afya wala kuutumia kwa dharura, utambuzi au maamuzi ya matibabu.',
+    openAiAssistant: 'Fungua AI isiyotumia ajenti',
   },
   profile: {
     title: 'Wasifu',
@@ -177,6 +181,9 @@ export const sw: MessageBundle = {
     hidePreviews: 'Ficha maelezo kwenye skrini iliyofungwa',
     hidePreviewsHelp:
       'Vikumbusho havitaonyesha jina la dawa yako wala dalili kwenye skrini iliyofungwa.',
+    smsReminders: 'Vikumbusho vya SMS',
+    smsRemindersHelp:
+      'Ruhusu kliniki yako kutuma vikumbusho visivyo na maelezo binafsi vya ukaguzi na dawa kwenye namba yako iliyothibitishwa. Gharama za ujumbe zinaweza kutumika.',
     unsyncedWarningTitle: 'Baadhi ya majibu bado yapo kwenye simu hii',
     unsyncedWarningBody:
       'Una taarifa {{count}} ambayo bado haijatumwa. Ukitoka sasa huenda ikapotea.',

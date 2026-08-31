@@ -157,6 +157,10 @@ export const en = {
     privacyTitle: 'Your privacy',
     privacyBody:
       'Your information is used only for your follow-up care. You choose what to share and can revoke sharing at any time.',
+    aiAssistantTitle: 'Optional AI assistant',
+    aiAssistantBody:
+      'This external assistant is for general information only. Do not share private health details or use it for emergencies, diagnosis, or treatment decisions.',
+    openAiAssistant: 'Open agent-free AI',
   },
   profile: {
     title: 'Profile',
@@ -168,6 +172,9 @@ export const en = {
     reminderTimesLabel: 'Reminder times come from your care plan.',
     hidePreviews: 'Hide details on the lock screen',
     hidePreviewsHelp: 'Reminders will not show your medicine name or symptoms on the lock screen.',
+    smsReminders: 'SMS reminders',
+    smsRemindersHelp:
+      'Allow your clinic to send neutral check-up and medicine reminders to your verified phone number. Message rates may apply.',
     unsyncedWarningTitle: 'Some answers are still on this phone',
     unsyncedWarningBody:
       'You have {{count}} check-in that has not been sent yet. If you sign out now it may be lost.',
