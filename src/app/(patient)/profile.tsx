@@ -90,6 +90,13 @@ export default function PatientProfile() {
           updatePreferences({ ...preferences, showPreviews: !preferences.showPreviews })
         }
       />
+      <ChoiceRow
+        kind="checkbox"
+        label={t('profile.smsReminders')}
+        helpText={t('profile.smsRemindersHelp')}
+        selected={preferences.smsEnabled === true}
+        onPress={() => updatePreferences({ ...preferences, smsEnabled: !preferences.smsEnabled })}
+      />
 
       <SectionHeading label={t('profile.consent')} />
       <AppText variant="secondary" muted>

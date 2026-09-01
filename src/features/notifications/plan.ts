@@ -15,11 +15,14 @@ export interface NotificationPreferences {
   enabled: boolean;
   /** False (the default) keeps medicine names off the lock screen. */
   showPreviews: boolean;
+  /** Server-side SMS delivery; effective only after explicit recorded consent. */
+  smsEnabled?: boolean;
 }
 
 export const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferences = {
   enabled: true,
   showPreviews: false,
+  smsEnabled: false,
 };
 
 export interface PlannedNotification {
